@@ -1,4 +1,6 @@
 FROM panubo/sshd:1.0.3
 
 RUN apk update && \
-    apk add sudo
+    apk add sudo && \
+    echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel && \
+    chmod 0440 /etc/sudoers.d/wheel

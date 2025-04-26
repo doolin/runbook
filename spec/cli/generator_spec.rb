@@ -249,7 +249,7 @@ RSpec.describe "runbook generate", type: :aruba do
               last_cmd = last_command_started
               expect(last_cmd).to have_output(/create  #{root}\/my_statement.rb/)
 
-              run_command("sed -i 's/MyProject/Runbook/' #{root}/my_statement.rb")
+              run_command("sed -i '' 's/MyProject/Runbook/' #{root}/my_statement.rb")
               run_command("runbook view my_runbook.rb")
 
               expect(last_command_started).to have_output(/icecream/)
@@ -265,8 +265,8 @@ RSpec.describe "runbook generate", type: :aruba do
 
               exec_sentinel = "# and the current metadata for this step of the execution"
               exec_statement = "metadata[:toolbox].output(object.attr1 + object.attr2)"
-              run_command("sed -i 's/MyProject/Runbook/' #{root}/my_statement.rb")
-              run_command("sed -i 's/#{exec_sentinel}/#{exec_statement}/' #{root}/my_statement.rb")
+              run_command("sed -i '' 's/MyProject/Runbook/' #{root}/my_statement.rb")
+              run_command("sed -i '' 's/#{exec_sentinel}/#{exec_statement}/' #{root}/my_statement.rb")
               run_command("runbook exec -a my_runbook.rb")
 
               expect(last_command_started).to have_output(/icecream/)
@@ -321,13 +321,13 @@ RSpec.describe "runbook generate", type: :aruba do
               last_cmd = last_command_started
               expect(last_cmd).to have_output(/create  #{root}\/rollback_section.rb/)
 
-              run_command("sed -i 's/MyProject/Runbook/' #{root}/rollback_section.rb")
+              run_command("sed -i '' 's/MyProject/Runbook/' #{root}/rollback_section.rb")
               exec_sentinel = "module DSL"
               exec_statement = "module DSL; def rollback_section(title, \\&block); section(title, \\&block); end"
-              run_command("sed -i 's/#{exec_sentinel}/#{exec_statement}/' #{root}/rollback_section.rb")
+              run_command("sed -i '' 's/#{exec_sentinel}/#{exec_statement}/' #{root}/rollback_section.rb")
               exec_sentinel = "# Runbook::Entities::Book::DSL"
               exec_statement = "Runbook::Entities::Book::DSL"
-              run_command("sed -i 's/#{exec_sentinel}/#{exec_statement}/' #{root}/rollback_section.rb")
+              run_command("sed -i '' 's/#{exec_sentinel}/#{exec_statement}/' #{root}/rollback_section.rb")
               run_command("runbook view my_runbook.rb")
 
               expect(last_command_started).to have_output(/Rollback Section/)
@@ -341,13 +341,13 @@ RSpec.describe "runbook generate", type: :aruba do
               last_cmd = last_command_started
               expect(last_cmd).to have_output(/create  #{root}\/rollback_section.rb/)
 
-              run_command("sed -i 's/MyProject/Runbook/' #{root}/rollback_section.rb")
+              run_command("sed -i '' 's/MyProject/Runbook/' #{root}/rollback_section.rb")
               exec_sentinel = "module DSL"
               exec_statement = "module DSL; def rollback_section(title, \\&block); section(title, \\&block); end"
-              run_command("sed -i 's/#{exec_sentinel}/#{exec_statement}/' #{root}/rollback_section.rb")
+              run_command("sed -i '' 's/#{exec_sentinel}/#{exec_statement}/' #{root}/rollback_section.rb")
               exec_sentinel = "# Runbook::Entities::Book::DSL"
               exec_statement = "Runbook::Entities::Book::DSL"
-              run_command("sed -i 's/#{exec_sentinel}/#{exec_statement}/' #{root}/rollback_section.rb")
+              run_command("sed -i '' 's/#{exec_sentinel}/#{exec_statement}/' #{root}/rollback_section.rb")
               run_command("runbook exec my_runbook.rb")
 
               expect(last_command_started).to have_output(/1. Rollback Section/)

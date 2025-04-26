@@ -41,8 +41,7 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
       @cid = `#{run_cmd}`.strip
       sleep 1
       `docker exec #{@cid} chown root:root /etc/authorized_keys/$USER`
-      `docker exec #{@cid} sed -ie 's/# \\(%wheel ALL=(ALL) NOPASSWD: ALL\\)/\\1/' /etc/sudoers`
-      `docker exec #{@cid} sed -ie 's/^wheel:\\(.*\\)/wheel:\\1,#{user}/' /etc/group`
+      `docker exec #{@cid} adduser #{user} wheel`
       example.run
     ensure
       `docker stop -t 0 #{@cid}`

@@ -21,3 +21,16 @@ RSpec.configure do |config|
     Runbook.configure
   end
 end
+
+# Configure Aruba
+Aruba.configure do |config|
+  config.allow_absolute_paths = true
+  config.exit_timeout = 60
+  config.io_wait_timeout = 2
+  config.startup_wait_time = 2
+  config.command_runtime_environment = {
+    'BUNDLE_GEMFILE' => nil,
+    'RUBYOPT' => nil,
+    'RUBY_VERSION' => RUBY_VERSION
+  }
+end

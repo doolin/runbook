@@ -3,7 +3,10 @@ require "spec_helper"
 RSpec.describe "runbook", type: :aruba do
   let(:command) { "runbook" }
 
-  before(:each) { run_command(command) }
+  before(:each) {
+    run_command(command)
+    stop_all_commands
+  }
 
   context "no arguments are given" do
     it "prints out a help message" do

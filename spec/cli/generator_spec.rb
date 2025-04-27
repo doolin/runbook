@@ -117,6 +117,11 @@ RSpec.describe "runbook generate", type: :aruba do
         context "when unknown option is passed" do
           let(:command) { "runbook generate generator #{name} #{root_opt} --unknown" }
 
+          before(:each) {
+            run_command(command)
+            stop_all_commands
+          }
+
           it "returns an error" do
             expect(last_command_stopped).to have_output(/Unknown switches "--unknown"/)
           end

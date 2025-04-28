@@ -1,3 +1,5 @@
+require 'stringio'
+
 module Runbook
   class Viewer
     attr_reader :book

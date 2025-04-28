@@ -6,7 +6,7 @@ PATH
       airbrussh (~> 1.4)
       method_source (~> 1.0)
       ruby2_keywords (~> 0.0.4)
-      sshkit (= 1.22.0)
+      sshkit (~> 1.2)
       sshkit-sudo (~> 0.1)
       thor (~> 1.0)
       tty-progressbar (~> 0.14)
@@ -80,6 +80,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    logger (1.7.0)
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.5)
@@ -90,6 +91,7 @@ GEM
     net-sftp (4.0.0)
       net-ssh (>= 5.0.0, < 8.0.0)
     net-ssh (7.3.0)
+    ostruct (0.6.1)
     pastel (0.8.0)
       tty-color (~> 0.5)
     pp (0.6.2)
@@ -117,11 +119,13 @@ GEM
       rspec-support (~> 3.13.0)
     rspec-support (3.13.2)
     ruby2_keywords (0.0.5)
-    sshkit (1.22.0)
-      mutex_m
+    sshkit (1.24.0)
+      base64
+      logger
       net-scp (>= 1.1.2)
       net-sftp (>= 2.1.2)
       net-ssh (>= 2.8.0)
+      ostruct
     sshkit-sudo (0.1.0)
       sshkit (~> 1.8)
     stringio (3.1.7)

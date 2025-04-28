@@ -9,8 +9,8 @@ PATH
       sshkit (~> 1.2)
       sshkit-sudo (~> 0.1)
       thor (~> 1.0)
-      tty-progressbar (~> 0.14)
-      tty-prompt (~> 0.20)
+      tty-progressbar (~> 0.18)
+      tty-prompt (~> 0.23)
 
 GEM
   remote: https://rubygems.org/
@@ -170,16 +170,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  appraisal (~> 2.2)
-  aruba (~> 2)
+  appraisal (~> 2.5)
+  aruba (~> 2.3)
   base64
   bcrypt_pbkdf (>= 1.0, < 2.0)
   bundler (~> 2.2)
-  debug (~> 1)
+  debug (~> 1.10)
   ed25519 (>= 1.2, < 2.0)
   mutex_m
-  rake (~> 13)
-  rspec (~> 3)
+  rake (~> 13.2)
+  rspec (~> 3.13)
   runbook!
 
 BUNDLED WITH

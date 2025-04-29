@@ -1167,9 +1167,9 @@ OUTPUT
       [
         "Runbook::Entities::Book: My Book [:redhat] {}",
         "Runbook::Entities::Setup: Setup [:test] {}",
-        "Runbook::Entities::Section: My Section [:test] {:env=>:prod}",
+        "Runbook::Entities::Section: My Section [:test] {env: :prod}",
         "Runbook::Entities::Step: Skip me [:skip] {}",
-        "Runbook::Entities::Step:  [:test, :skip] {:env=>:stg}",
+        "Runbook::Entities::Step:  [:test, :skip] {env: :stg}",
       ]
     end
 
@@ -1189,7 +1189,13 @@ OUTPUT
           :before,
           Runbook::Entity,
         ) do |object, metadata|
-          metadata[:toolbox].output("#{object.class}: #{object.title} #{object.tags} #{object.labels}")
+          labels_str = if object.labels.empty?
+            "{}"
+          else
+            labels = object.labels.map { |k,v| "#{k}: :#{v}" }.join(", ")
+            "{#{labels}}"
+          end
+          metadata[:toolbox].output("#{object.class}: #{object.title} #{object.tags} #{labels_str}")
         end
 
         example.run

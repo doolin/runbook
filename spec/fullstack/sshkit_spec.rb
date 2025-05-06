@@ -27,6 +27,17 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
     )
   end
 
+  # Detect platform and set appropriate Docker platform flag
+  let(:docker_platform) do
+    host_arch = `uname -m`.strip
+    case host_arch
+    when "arm64"
+      "--platform linux/amd64" # Force AMD64 on ARM Macs for consistency
+    else
+      "" # No platform flag needed for AMD64/x86_64
+    end
+  end
+
   around(:each) do |example|
     ports = "-p 10022:22"
     mount = "-v #{key_dir}/id_rsa.pub:/etc/authorized_keys/$USER"
@@ -36,7 +47,7 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
       FileUtils.mkdir_p(key_dir)
       key_gen_cmd = "[ -f #{key_dir}/id_rsa ] || ssh-keygen -t rsa -N '' -f #{key_dir}/id_rsa"
       `#{key_gen_cmd}`
-      `docker build --rm -t sshd:latest -f dockerfiles/Dockerfile-sshd .`
+      `docker build #{docker_platform} --rm -t sshd:latest -f dockerfiles/Dockerfile-sshd .`
       run_cmd = "docker run -d #{ports} #{mount} #{users} sshd:latest 2>/dev/null"
       @cid = `#{run_cmd}`.strip
       sleep 1

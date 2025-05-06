@@ -27,7 +27,7 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
     )
   end
 
-  around(:all) do |example|
+  around(:each) do |example|
     ports = "-p 10022:22"
     mount = "-v #{key_dir}/id_rsa.pub:/etc/authorized_keys/$USER"
     users = %Q{-e SSH_USERS="$USER:500:500"}

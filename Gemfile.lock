@@ -79,6 +79,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.6.1)
+    docile (1.4.1)
     drb (2.2.1)
     ed25519 (1.3.0)
     ffi (1.17.2)
@@ -156,6 +157,12 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     securerandom (0.4.1)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.13.1)
+    simplecov_json_formatter (0.1.4)
     sshkit (1.24.0)
       base64
       logger
@@ -208,6 +215,7 @@ DEPENDENCIES
   rspec (~> 3.13)
   rubocop
   runbook!
+  simplecov
 
 BUNDLED WITH
    2.6.8

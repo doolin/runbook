@@ -1,3 +1,10 @@
+require "simplecov"
+SimpleCov.start do
+  enable_coverage :branch
+  add_filter "spec"
+  add_filter "vendor"
+  # add_filter "config"
+end
 require "aruba/rspec"
 require "bundler/setup"
 require "debug"

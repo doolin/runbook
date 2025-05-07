@@ -28,6 +28,8 @@ RSpec.configure do |config|
     Runbook.configure
   end
 
+  config.include Aruba::Api, type: :aruba
+
   config.fail_fast = true
 end
 
@@ -35,8 +37,8 @@ end
 Aruba.configure do |config|
   config.allow_absolute_paths = true
   config.exit_timeout = 30
-  config.io_wait_timeout = 1
-  config.startup_wait_time = 1
+  config.io_wait_timeout = 0
+  config.startup_wait_time = 0
   config.command_runtime_environment = {
     'BUNDLE_GEMFILE' => nil,
     'RUBYOPT' => nil,

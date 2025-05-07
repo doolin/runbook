@@ -16,6 +16,11 @@ RSpec.describe "runbook generate", type: :aruba do
     write_file(config_file, config_content)
     create_directory(root)
     run_command(command)
+    setup_aruba
+    Aruba.configure do |config|
+      config.startup_wait_time = 1
+      config.io_wait_timeout = 1
+    end
   end
 
   describe "input specification" do

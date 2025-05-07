@@ -11,7 +11,7 @@ RSpec.describe "runbook tmux integration", type: :aruba do
     Runbook::Util::StoredPose._file(book_title)
   }
 
-  around(:all) do |example|
+  around(:each) do |example|
     `docker build --rm -t runbook:latest -f dockerfiles/Dockerfile-runbook .`
     begin
       @cid = `docker create runbook:latest sleep infinity`.strip

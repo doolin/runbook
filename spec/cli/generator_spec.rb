@@ -12,23 +12,45 @@ RSpec.describe "runbook generate", type: :aruba do
   end
   let(:root) { "generators" }
 
-  before(:each) { write_file(config_file, config_content) }
-  before(:each) { create_directory(root) }
-  before(:each) { run_command(command) }
+  before(:each) do
+    write_file(config_file, config_content)
+    create_directory(root)
+    run_command(command)
+  end
 
   describe "input specification" do
-    ["help generate", "generate -h", "generate --help"].each do |help_cmd|
-      context help_cmd do
-        let(:command) { "runbook #{help_cmd}" }
+    shared_examples "help command" do |command|
+      let(:command) { command }
+      it "prints out help instructions" do
+        expect(last_command_started).to have_output(/runbook generate generator NAME/)
+      end
+    end
 
-        it "prints out help instructions" do
-          expect(last_command_started).to have_output(/runbook generate generator NAME/)
-          expect(last_command_started).to have_output(/-c, \[--config=CONFIG\]/)
-          expect(last_command_started).to have_output(/Base options:/)
-          expect(last_command_started).to have_output(/\[--root=ROOT\]/)
-          expect(last_command_started).to have_output(/Runtime options:/)
+    context "help generate" do
+      let(:command) { "runbook help generate" }
+      let(:expected_outputs) do
+        [
+          /runbook generate generator NAME/,
+          /-c, \[--config=CONFIG\]/,
+          /Base options:/,
+          /\[--root=ROOT\]/,
+          /Runtime options:/
+        ]
+      end
+
+      it "prints out help instructions" do
+        expected_outputs.each do |output|
+          expect(last_command_started).to have_output(output)
         end
       end
+    end
+
+    context "generate -h" do
+      include_examples "help command", "runbook generate -h"
+    end
+
+    context "generate --help" do
+      include_examples "help command", "runbook generate --help"
     end
 
     context "when config is passed" do
@@ -59,21 +81,6 @@ RSpec.describe "runbook generate", type: :aruba do
     end
 
     context "generator generator" do
-      ["help generator", "generator -h", "generator --help"].each do |help_cmd|
-        context help_cmd do
-          let(:command) { "runbook generate #{help_cmd}" }
-
-          it "prints out help instructions" do
-            expect(last_command_started).to have_output(/runbook generate generator NAME/)
-            expect(last_command_started).to have_output(/-c, \[--config=CONFIG\]/)
-            expect(last_command_started).to have_output(/Base options:/)
-            expect(last_command_started).to have_output(/\[--root=ROOT\]/)
-            expect(last_command_started).to have_output(/Runtime options:/)
-            expect(last_command_started).to have_output(/Generate a runbook generator named NAME/)
-          end
-        end
-      end
-
       context "when name is not passed" do
         let(:command) { "runbook generate generator" }
 
@@ -86,6 +93,12 @@ RSpec.describe "runbook generate", type: :aruba do
         let(:name) { "my_gen" }
         let(:root_opt) { "--root #{root}" }
         let(:command) { "runbook generate generator #{name} #{root_opt}" }
+        let(:runbookfile) { "Runbookfile" }
+        let(:runbookfile_content) do
+          <<-CONFIG
+          require_relative '#{root}/my_gen/my_gen'
+          CONFIG
+        end
 
         it "generates a generator" do
           last_cmd = last_command_started
@@ -132,20 +145,16 @@ RSpec.describe "runbook generate", type: :aruba do
         end
 
         context "when generated generator is invoked" do
-          let(:command) { "runbook generate generator #{name} #{root_opt}" }
-          let(:runbookfile) { "Runbookfile" }
-          let(:runbookfile_content) do
-            <<-CONFIG
-            require_relative '#{root}/my_gen/my_gen'
-            CONFIG
+          before(:each) { write_file(runbookfile, runbookfile_content) }
+
+          it "creates the Runbookfile" do
+            expect(file?(runbookfile)).to be_truthy
+            expect(runbookfile).to have_file_content(/require_relative '#{root}\/my_gen\/my_gen'/)
           end
 
           it "is present in help output" do
             last_cmd = last_command_started
             expect(last_cmd).to have_output(/create  #{root}\/my_gen/)
-
-            write_file(runbookfile, runbookfile_content)
-            expect(file?(runbookfile)).to be_truthy
 
             run_command("runbook generate help")
 
@@ -155,9 +164,6 @@ RSpec.describe "runbook generate", type: :aruba do
           it "does not blow up" do
             last_cmd = last_command_started
             expect(last_cmd).to have_output(/create  #{root}\/my_gen/)
-
-            write_file(runbookfile, runbookfile_content)
-            expect(file?(runbookfile)).to be_truthy
 
             run_command("runbook generate my_gen #{root_opt} --help")
 
@@ -263,13 +269,13 @@ RSpec.describe "runbook generate", type: :aruba do
 
           context "when generated statement is executed" do
             let(:command) { "runbook generate statement #{name} #{root_opt}" }
+            let(:exec_sentinel) { "# and the current metadata for this step of the execution" }
+            let(:exec_statement) { "metadata[:toolbox].output(object.attr1 + object.attr2)" }
 
             it "exercises the statement" do
               last_cmd = last_command_started
               expect(last_cmd).to have_output(/create  #{root}\/my_statement.rb/)
 
-              exec_sentinel = "# and the current metadata for this step of the execution"
-              exec_statement = "metadata[:toolbox].output(object.attr1 + object.attr2)"
               run_command("sed -i '' -e 's/MyProject/Runbook/' -e 's/#{exec_sentinel}/#{exec_statement}/' #{root}/my_statement.rb")
               run_command("runbook exec -a my_runbook.rb")
 

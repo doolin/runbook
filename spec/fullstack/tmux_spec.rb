@@ -19,16 +19,13 @@ RSpec.describe "runbook tmux integration", type: :aruba do
     begin
       @cid = `docker create runbook:latest sleep infinity`.strip
       `docker start #{@cid}`
+      write_file(runbook_file, content)
+      run_command("docker cp #{runbook_file} #{@cid}:#{runbook_file}")
       example.run
     ensure
       `docker stop -t 0 #{@cid}`
       system("docker rm -f #{@cid} 2>&1 1>/dev/null")
     end
-  end
-
-  before(:each) { write_file(runbook_file, content) }
-  before(:each) do
-    run_command("docker cp #{runbook_file} #{@cid}:#{runbook_file}")
   end
 
   before(:each) do

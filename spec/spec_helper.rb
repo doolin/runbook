@@ -27,6 +27,8 @@ RSpec.configure do |config|
   config.before(:suite) do
     Runbook.configure
   end
+
+  config.fail_fast = true
 end
 
 # Configure Aruba

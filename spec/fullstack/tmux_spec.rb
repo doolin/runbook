@@ -32,8 +32,7 @@ RSpec.describe "runbook tmux integration", type: :aruba do
   end
 
   before(:each) do
-    run_command("docker exec #{@cid} rm -rf #{repo_file}")
-    run_command("docker exec #{@cid} rm -rf #{stored_pose_file}")
+    run_command("docker exec #{@cid} rm -rf #{repo_file} #{stored_pose_file}")
   end
 
   before(:each) do

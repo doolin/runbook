@@ -34,9 +34,9 @@ end
 # Configure Aruba
 Aruba.configure do |config|
   config.allow_absolute_paths = true
-  config.exit_timeout = 60
-  config.io_wait_timeout = 2
-  config.startup_wait_time = 2
+  config.exit_timeout = 30
+  config.io_wait_timeout = 1
+  config.startup_wait_time = 1
   config.command_runtime_environment = {
     'BUNDLE_GEMFILE' => nil,
     'RUBYOPT' => nil,

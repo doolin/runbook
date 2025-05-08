@@ -2,6 +2,11 @@ require "spec_helper"
 require 'securerandom'
 
 RSpec.describe "runbook sshkit integration", type: :aruba do
+  SHARED_CONFIG = {
+    key_dir: File.join(Dir.pwd, "ssh_keys"),
+    docker_platform: `uname -m`.strip == "arm64" ? "--platform linux/amd64" : ""
+  }.freeze
+
   let(:config_file) { "runbook_config.rb" }
   let(:config_content) do
     <<-CONFIG
@@ -19,35 +24,20 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
     Runbook::Util::StoredPose._file(book_title)
   }
   let(:user) { ENV["USER"] }
-  let(:key_dir) do
-    File.join(
-      aruba.root_directory,
-      aruba.current_directory,
-      "ssh_keys"
-    )
-  end
 
-  # Detect platform and set appropriate Docker platform flag
-  let(:docker_platform) do
-    host_arch = `uname -m`.strip
-    case host_arch
-    when "arm64"
-      "--platform linux/amd64" # Force AMD64 on ARM Macs for consistency
-    else
-      "" # No platform flag needed for AMD64/x86_64
-    end
+  before(:all) do
+    FileUtils.mkdir_p(SHARED_CONFIG[:key_dir])
+    key_gen_cmd = "[ -f #{SHARED_CONFIG[:key_dir]}/id_rsa ] || ssh-keygen -t rsa -N '' -f #{SHARED_CONFIG[:key_dir]}/id_rsa"
+    `#{key_gen_cmd}`
+    `docker build #{SHARED_CONFIG[:docker_platform]} --rm -t sshd:latest -f dockerfiles/Dockerfile-sshd .`
   end
 
   around(:each) do |example|
     ports = "-p 10022:22"
-    mount = "-v #{key_dir}/id_rsa.pub:/etc/authorized_keys/$USER"
+    mount = "-v #{SHARED_CONFIG[:key_dir]}/id_rsa.pub:/etc/authorized_keys/$USER"
     users = %Q{-e SSH_USERS="$USER:500:500"}
 
     begin
-      FileUtils.mkdir_p(key_dir)
-      key_gen_cmd = "[ -f #{key_dir}/id_rsa ] || ssh-keygen -t rsa -N '' -f #{key_dir}/id_rsa"
-      `#{key_gen_cmd}`
-      `docker build #{docker_platform} --rm -t sshd:latest -f dockerfiles/Dockerfile-sshd .`
       run_cmd = "docker run -d #{ports} #{mount} #{users} sshd:latest 2>/dev/null"
       @cid = `#{run_cmd}`.strip
       sleep 1
@@ -77,7 +67,7 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
       SSHKit::Backend::Netssh.configure do |ssh|
         ssh.ssh_options = {
           verify_host_key: :never,
-          keys: ["#{key_dir}/id_rsa"],
+          keys: ["#{SHARED_CONFIG[:key_dir]}/id_rsa"],
         }
       end
 
@@ -109,7 +99,7 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
         SSHKit::Backend::Netssh.configure do |ssh|
           ssh.ssh_options = {
             verify_host_key: :never,
-            keys: ["#{key_dir}/id_rsa"],
+            keys: ["#{SHARED_CONFIG[:key_dir]}/id_rsa"],
           }
         end
 
@@ -128,7 +118,6 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
           / #{echo_output}$/,
         ]
       }
-
 
       it "does not break the command" do
         output_lines.each do |line|

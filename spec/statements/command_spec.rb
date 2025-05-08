@@ -18,12 +18,32 @@ RSpec.describe Runbook::Statements::Command do
     }
   }
   let(:raw) { true }
+  let(:book) { Runbook::Entities::Book.new("My Book") }
+  let(:parent) { Runbook::Entities::Step.new("My Step").tap { |step| step.parent = book } }
   let(:command) {
     Runbook::Statements::Command.new(
       cmd,
       ssh_config: ssh_config,
       raw: raw,
-    )
+    ).tap { |cmd| cmd.parent = parent }
+  }
+  let(:toolbox) { instance_double("Runbook::Toolbox") }
+  let(:metadata) {
+    {
+      noop: false,
+      auto: false,
+      paranoid: true,
+      start_at: "0",
+      toolbox: toolbox,
+      layout_panes: {},
+      depth: 1,
+      index: 0,
+      parent: nil,
+      position: "",
+      reverse: Runbook::Util::Glue.new(false),
+      reversed: Runbook::Util::Glue.new(false),
+      book_title: "My Book",
+    }
   }
 
   it "has a command" do
@@ -46,6 +66,34 @@ RSpec.describe Runbook::Statements::Command do
 
     it "sets defaults for raw" do
       expect(command.raw).to be_falsey
+    end
+  end
+
+  describe "execution behavior" do
+    subject { Class.new { include Runbook::Run } }
+
+    before(:each) do
+      allow(toolbox).to receive(:output)
+    end
+
+    context "when dynamic and visited" do
+      before do
+        command.dynamic!
+        command.visited!
+      end
+
+      it "skips execution" do
+        expect(subject).not_to receive(:runbook__statements__command)
+        command.run(subject, metadata)
+      end
+    end
+
+    context "when not dynamic or not visited" do
+      it "executes normally" do
+        expect(subject).to receive(:runbook__statements__command).with(command, metadata)
+        command.run(subject, metadata)
+        expect(command.visited?).to be true
+      end
     end
   end
 end

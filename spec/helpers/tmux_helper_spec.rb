@@ -61,7 +61,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
 
     context "when layout file does not exist" do
       before(:each) do
-        expect(File).to receive(:exist?).with(layout_file).and_return(false)
+        allow(File).to receive(:exist?).with(any_args).and_return(false)
       end
 
       it "invokes _setup_layout" do
@@ -331,6 +331,28 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
 
         subject._setup_layout(structure)
       end
+    end
+  end
+
+  describe "_layout_file" do
+    let(:runbook_title) { "my-test-runbook" }
+    let(:tmpdir) { "/tmp" }
+    let(:expected_file) { "#{tmpdir}/runbook_layout_12345_test-session_67890_%1_#{runbook_title}.yml" }
+
+    before(:each) do
+      allow(Dir).to receive(:tmpdir).and_return(tmpdir)
+      allow(subject).to receive(:`).with(/tmux display-message/).and_return(expected_file)
+    end
+
+    it "returns the correct layout file path" do
+      expect(subject._layout_file(runbook_title)).to eq(expected_file)
+    end
+
+    it "calls tmux display-message with the correct format" do
+      expect(subject).to receive(:`).with(
+        %r{tmux display-message -p -t \$TMUX_PANE "#{Regexp.escape(tmpdir)}/runbook_layout_.*_.*_.*_.*_#{Regexp.escape(runbook_title)}\.yml"}
+      ).and_return(expected_file)
+      subject._layout_file(runbook_title)
     end
   end
 end

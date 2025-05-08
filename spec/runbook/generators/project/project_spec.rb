@@ -3,10 +3,8 @@ require 'spec_helper'
 RSpec.describe Runbook::Generators::Project do
   describe '#shared_lib_dir' do
     it 'uses the shared-lib-dir option when provided' do
-      custom_dir = 'lib/custom/path'
-      generator = described_class.new(['test_project'], { 'shared-lib-dir' => custom_dir })
-      generator.shared_lib_dir
-      expect(generator.instance_variable_get(:@shared_lib_dir)).to eq(custom_dir)
+      generator = described_class.new(['my_runbooks'], { 'shared-lib-dir' => 'custom_lib' })
+      expect(generator.shared_lib_dir).to eq('custom_lib')
     end
   end
 
@@ -24,6 +22,24 @@ RSpec.describe Runbook::Generators::Project do
       code, configuration, tests, and dependencies.
       LONG_DESC
       expect(described_class.long_description.strip).to eq(expected)
+    end
+  end
+
+  describe '.class_options' do
+    it 'defines the expected options' do
+      options = described_class.class_options
+
+      # Check for presence of key options
+      expect(options.keys).to include(:"shared-lib-dir", :force, :ci, :test)
+
+      # Check specific option properties
+      shared_lib_option = options[:"shared-lib-dir"]
+      expect(shared_lib_option.type).to eq(:string)
+      expect(shared_lib_option.description).to eq('Target directory for shared runbook code')
+
+      force_option = options[:force]
+      expect(force_option.type).to eq(:boolean)
+      expect(force_option.description).to eq('Overwrite files that already exist')
     end
   end
 end

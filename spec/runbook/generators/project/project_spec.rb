@@ -183,4 +183,45 @@ RSpec.describe Runbook::Generators::Project do
       expect(generator.instance_variable_get(:@gemfile_file_contents)).to eq(gemfile_contents)
     end
   end
+
+  describe '#create_runbookfile' do
+    it 'creates a Runbookfile with the correct template' do
+      # Setup
+      generator = described_class.new(['my_runbooks'])
+      allow(generator).to receive(:template)
+      allow(generator).to receive(:parent_options).and_return({ root: '.' })
+
+      # Exercise
+      generator.create_runbookfile
+
+      # Verify
+      expect(generator).to have_received(:template).with(
+        'templates/Runbookfile.tt',
+        File.join('.', 'my_runbooks', 'Runbookfile')
+      )
+    end
+  end
+
+  describe '#create_runbooks_directory' do
+    it 'creates the runbooks directory and adds a .keep file' do
+      # Setup
+      generator = described_class.new(['my_runbooks'])
+      allow(generator).to receive(:empty_directory)
+      allow(generator).to receive(:_keep_dir)
+      allow(generator).to receive(:parent_options).and_return({ root: '.' })
+
+      # Exercise
+      generator.create_runbooks_directory
+
+      # Verify directory creation
+      expect(generator).to have_received(:empty_directory).with(
+        File.join('.', 'my_runbooks', 'runbooks')
+      )
+
+      # Verify .keep file creation
+      expect(generator).to have_received(:_keep_dir).with(
+        File.join('.', 'my_runbooks', 'runbooks')
+      )
+    end
+  end
 end

@@ -60,4 +60,67 @@ RSpec.describe Runbook::Generators::Project do
       )
     end
   end
+
+  describe '#create_gemfile' do
+    it 'creates a Gemfile with template and appends dependencies' do
+      # Setup
+      generator = described_class.new(['my_runbooks'], { 'shared-lib-dir' => 'lib/my_runbooks' })
+      allow(generator).to receive(:template)
+      allow(generator).to receive(:append_to_file)
+      allow(generator).to receive(:parent_options).and_return({ root: '.' })
+
+      # Mock gemspec and gemfile contents
+      generator.instance_variable_set(:@gemspec_file_contents, [
+                                        "  spec.add_development_dependency 'rspec', '~> 3.0'\n",
+                                        "  spec.add_development_dependency 'rubocop', '~> 1.0'\n"
+                                      ])
+      generator.instance_variable_set(:@gemfile_file_contents, [
+                                        "gem 'rake', '~> 13.0'\n",
+                                        "gem 'runbook', '~> 2.0'\n"
+                                      ])
+
+      # Exercise
+      generator.create_gemfile
+
+      # Verify template creation
+      expect(generator).to have_received(:template).with(
+        'templates/Gemfile.tt',
+        File.join('.', 'my_runbooks', 'Gemfile')
+      )
+
+      # Verify development dependencies are appended
+      expect(generator).to have_received(:append_to_file).with(
+        File.join('.', 'my_runbooks', 'Gemfile'),
+        "\ngem 'rspec', '~> 3.0'\ngem 'rubocop', '~> 1.0'\n",
+        verbose: false
+      )
+
+      # Verify gemfile gems are appended
+      expect(generator).to have_received(:append_to_file).with(
+        File.join('.', 'my_runbooks', 'Gemfile'),
+        "\ngem 'rake', '~> 13.0'\ngem 'runbook', '~> 2.0'\n",
+        verbose: false
+      )
+    end
+
+    it 'creates a Gemfile with just template when no dependencies exist' do
+      # Setup
+      generator = described_class.new(['my_runbooks'], { 'shared-lib-dir' => 'lib/my_runbooks' })
+      allow(generator).to receive(:template)
+      allow(generator).to receive(:append_to_file)
+      allow(generator).to receive(:parent_options).and_return({ root: '.' })
+
+      # Exercise
+      generator.create_gemfile
+
+      # Verify template creation
+      expect(generator).to have_received(:template).with(
+        'templates/Gemfile.tt',
+        File.join('.', 'my_runbooks', 'Gemfile')
+      )
+
+      # Verify no dependencies are appended
+      expect(generator).not_to have_received(:append_to_file)
+    end
+  end
 end

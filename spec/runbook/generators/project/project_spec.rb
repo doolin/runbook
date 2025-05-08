@@ -123,4 +123,64 @@ RSpec.describe Runbook::Generators::Project do
       expect(generator).not_to have_received(:append_to_file)
     end
   end
+
+  describe '#remove_unneeded_files' do
+    let(:generator) { described_class.new(['my_runbooks']) }
+    let(:root_dir) { '.' }
+
+    before do
+      allow(generator).to receive(:parent_options).and_return({ root: root_dir })
+      allow(generator).to receive(:remove_file)
+      allow(File).to receive(:exist?).and_return(false)
+      allow(File).to receive(:readlines).and_return([])
+    end
+
+    it 'removes all unneeded files' do
+      # Exercise
+      generator.remove_unneeded_files
+
+      # Verify each file is removed
+      expect(generator).to have_received(:remove_file).with(
+        File.join(root_dir, 'my_runbooks', 'my_runbooks.gemspec')
+      )
+      expect(generator).to have_received(:remove_file).with(
+        File.join(root_dir, 'my_runbooks', 'README.md')
+      )
+      expect(generator).to have_received(:remove_file).with(
+        File.join(root_dir, 'my_runbooks', 'Gemfile')
+      )
+      expect(generator).to have_received(:remove_file).with(
+        File.join(root_dir, 'my_runbooks', 'lib', 'my_runbooks.rb')
+      )
+      expect(generator).to have_received(:remove_file).with(
+        File.join(root_dir, 'my_runbooks', 'lib', 'my_runbooks', 'version.rb')
+      )
+    end
+
+    it 'extracts content from existing files before removal' do
+      # Setup - simulate existing files
+      allow(File).to receive(:exist?).and_return(true)
+      gemspec_contents = [
+        "  spec.add_development_dependency 'rspec'\n",
+        "  spec.add_development_dependency 'rubocop'\n"
+      ]
+      gemfile_contents = [
+        "gem 'rake'\n",
+        "gem 'runbook'\n"
+      ]
+      allow(File).to receive(:readlines)
+        .with(File.join(root_dir, 'my_runbooks', 'my_runbooks.gemspec'))
+        .and_return(gemspec_contents)
+      allow(File).to receive(:readlines)
+        .with(File.join(root_dir, 'my_runbooks', 'Gemfile'))
+        .and_return(gemfile_contents)
+
+      # Exercise
+      generator.remove_unneeded_files
+
+      # Verify contents were extracted
+      expect(generator.instance_variable_get(:@gemspec_file_contents)).to eq(gemspec_contents)
+      expect(generator.instance_variable_get(:@gemfile_file_contents)).to eq(gemfile_contents)
+    end
+  end
 end

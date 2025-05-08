@@ -266,6 +266,8 @@ module Runbook::Generators
       when "minitest"
         path << "test"
         path << "#{_name}_test.rb"
+      else
+        raise "Invalid test option: #{options['test']}"
       end
       target = File.join(*path)
 

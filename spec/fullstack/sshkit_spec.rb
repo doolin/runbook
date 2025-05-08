@@ -125,6 +125,39 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
         end
       end
     end
+
+    context "when umask is specified" do
+      let(:content) do
+        <<-RUNBOOK
+        SSHKit::Backend::Netssh.configure do |ssh|
+          ssh.ssh_options = {
+            verify_host_key: :never,
+            keys: ["#{SHARED_CONFIG[:key_dir]}/id_rsa"],
+          }
+        end
+
+        Runbook.book "#{book_title}" do
+          step do
+            server "#{user}@127.0.0.1:10022"
+            umask "077"
+
+            command "touch test_file && stat -c '%a' test_file"
+          end
+        end
+        RUNBOOK
+      end
+      let(:output_lines) {
+        [
+          /600/,
+        ]
+      }
+
+      it "applies the specified umask" do
+        output_lines.each do |line|
+          expect(last_command_started).to have_output(line)
+        end
+      end
+    end
   end
 end
 

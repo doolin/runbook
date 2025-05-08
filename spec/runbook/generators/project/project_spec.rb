@@ -42,4 +42,22 @@ RSpec.describe Runbook::Generators::Project do
       expect(force_option.description).to eq('Overwrite files that already exist')
     end
   end
+
+  describe '#create_readme' do
+    it 'creates a README.md with the correct content' do
+      # Setup
+      generator = described_class.new(['my_runbooks'], { 'shared-lib-dir' => 'lib/my_runbooks' })
+      allow(generator).to receive(:template)
+      allow(generator).to receive(:parent_options).and_return({ root: '.' })
+
+      # Exercise
+      generator.create_readme
+
+      # Verify
+      expect(generator).to have_received(:template).with(
+        'templates/README.md.tt',
+        File.join('.', 'my_runbooks', 'README.md')
+      )
+    end
+  end
 end

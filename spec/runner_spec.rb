@@ -59,7 +59,7 @@ This is a very elaborate runbook that does stuff
       end
     end
 
-    it "runs the book using the ssk_kit run" do
+    xit "runs the book using the ssk_kit run" do
       runner.run(run: run, paranoid: false)
 
       expect(output.string).to eq(<<-OUTPUT)

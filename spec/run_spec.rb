@@ -175,6 +175,17 @@ RSpec.describe "Runbook::Run" do
             expect(metadata[:reversed]).to be_truthy
           end
         end
+
+        context "when jumping to a future position" do
+          let(:position) { "1.10" }
+          let(:result) { "1.11" }
+
+          xit "does not set reverse and reversed to true" do
+            subject.execute(object, metadata)
+            expect(metadata[:reverse]).to be_falsey
+            expect(metadata[:reversed]).to be_falsey
+          end
+        end
       end
 
       context "when :no_paranoid" do

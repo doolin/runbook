@@ -30,7 +30,7 @@ RSpec.configure do |config|
 
   config.include Aruba::Api, type: :aruba
 
-  config.fail_fast = true
+  config.fail_fast = false
 end
 
 # Configure Aruba

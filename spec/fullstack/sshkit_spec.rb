@@ -40,9 +40,10 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
     begin
       run_cmd = "docker run -d #{ports} #{mount} #{users} sshd:latest 2>/dev/null"
       @cid = `#{run_cmd}`.strip
-      sleep 1
+      sleep 3
       `docker exec #{@cid} chown root:root /etc/authorized_keys/$USER`
       `docker exec #{@cid} adduser #{user} wheel`
+      sleep 3
       example.run
     ensure
       `docker stop -t 0 #{@cid}`

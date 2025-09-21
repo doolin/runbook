@@ -81,7 +81,10 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
       Runbook::Entities::Section.new("Section 1")
     end
 
-    before(:each) { section.add(step); step.add(object) }
+    before(:each) do
+      section.add(step)
+      step.add(object)
+    end
 
     context "when no ssh_configs are set" do
       it "uses a blank config" do

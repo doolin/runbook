@@ -24,7 +24,7 @@ module Runbook
         else
           msg = "ERROR! No execution rule for #{object.class} (#{_method_name(object)}) in #{to_s}"
           metadata[:toolbox].error(msg)
-          return
+          nil
         end
       end
 
@@ -197,7 +197,7 @@ module Runbook
         return false if current_pose.empty?
         position = Gem::Version.new(current_pose)
         start_at = Gem::Version.new(metadata[:start_at])
-        return position < start_at
+        position < start_at
       end
 
       def start_at_is_substep?(object, metadata)
@@ -209,7 +209,7 @@ module Runbook
       def past_position?(current_position, position)
         current_pose = Gem::Version.new(current_position)
         pose = Gem::Version.new(position)
-        return pose <= current_pose
+        pose <= current_pose
       end
 
       def _method_name(object)
@@ -230,7 +230,7 @@ module Runbook
         toolbox = metadata[:toolbox]
         case result
         when :continue
-          return
+          nil
         when :skip
           position = metadata[:position]
           split_position = position.split(".")
@@ -278,11 +278,9 @@ module Runbook
         :after,
         Runbook::Statement
       ) do |object, metadata|
-        if object.parent.is_a?(Runbook::Entities::Step) ||
-            object.parent.is_a?(Runbook::Entities::Setup)
-          if object.parent.items.last == object
-            metadata[:toolbox].output("\n")
-          end
+        if (object.parent.is_a?(Runbook::Entities::Step) ||
+            object.parent.is_a?(Runbook::Entities::Setup)) && (object.parent.items.last == object)
+          metadata[:toolbox].output("\n")
         end
       end
     end

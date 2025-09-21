@@ -5,25 +5,25 @@ module Factory
       attrs = {
         title: "My Title"
       }.merge!(overrides)
-      return Runbook::Entities::Book.new(attrs[:title])
+      Runbook::Entities::Book.new(attrs[:title])
     when :section
       attrs = {
         title: "My Title"
       }.merge!(overrides)
-      return Runbook::Entities::Section.new(attrs[:title])
+      Runbook::Entities::Section.new(attrs[:title])
     when :setup
-      return Runbook::Entities::Setup.new
+      Runbook::Entities::Setup.new
     when :step
       attrs = {
         title: "My Title"
       }.merge!(overrides)
-      return Runbook::Entities::Step.new(attrs[:title])
+      Runbook::Entities::Step.new(attrs[:title])
     when :ask
       attrs = {
         prompt: "Continue?",
         into: :should_continue
       }.merge!(overrides)
-      return Runbook::Statements::Ask.new(
+      Runbook::Statements::Ask.new(
         attrs[:prompt],
         into: attrs[:into]
       )
@@ -35,7 +35,7 @@ module Factory
         attempts: 3,
         abort_statement: nil
       }.merge!(overrides)
-      return Runbook::Statements::Assert.new(
+      Runbook::Statements::Assert.new(
         attrs[:cmd],
         interval: attrs[:interval],
         timeout: attrs[:timeout],
@@ -47,7 +47,7 @@ module Factory
         cmd: "echo 'hi'",
         into: :result
       }.merge!(overrides)
-      return Runbook::Statements::Capture.new(
+      Runbook::Statements::Capture.new(
         attrs[:cmd],
         into: attrs[:into]
       )
@@ -56,7 +56,7 @@ module Factory
         cmd: "echo 'hi'",
         into: :result
       }.merge!(overrides)
-      return Runbook::Statements::CaptureAll.new(
+      Runbook::Statements::CaptureAll.new(
         attrs[:cmd],
         into: attrs[:into]
       )
@@ -64,7 +64,7 @@ module Factory
       attrs = {
         cmd: "echo 'hi'"
       }.merge!(overrides)
-      return Runbook::Statements::Command.new(
+      Runbook::Statements::Command.new(
         attrs[:cmd]
       )
     when :condition
@@ -75,7 +75,7 @@ module Factory
         if_stmt: if_stmt,
         else_stmt: nil
       }.merge!(overrides)
-      return Runbook::Statements::Condition.new(
+      Runbook::Statements::Condition.new(
         predicate: attrs[:predicate],
         if_stmt: attrs[:if_stmt],
         else_stmt: attrs[:else_stmt]
@@ -84,42 +84,42 @@ module Factory
       attrs = {
         prompt: "Continue?"
       }.merge!(overrides)
-      return Runbook::Statements::Confirm.new(
+      Runbook::Statements::Confirm.new(
         attrs[:prompt]
       )
     when :description
       attrs = {
         msg: "This is a loooong description"
       }.merge!(overrides)
-      return Runbook::Statements::Description.new(
+      Runbook::Statements::Description.new(
         attrs[:msg]
       )
     when :download
       attrs = {
         from: "/root/my_file.txt"
       }.merge!(overrides)
-      return Runbook::Statements::Download.new(
+      Runbook::Statements::Download.new(
         attrs[:from]
       )
     when :layout
       attrs = {
         structure: []
       }.merge!(overrides)
-      return Runbook::Statements::Layout.new(
+      Runbook::Statements::Layout.new(
         attrs[:structure]
       )
     when :note
       attrs = {
         msg: "fyi"
       }.merge!(overrides)
-      return Runbook::Statements::Note.new(
+      Runbook::Statements::Note.new(
         attrs[:msg]
       )
     when :notice
       attrs = {
         msg: "There be dragons!"
       }.merge!(overrides)
-      return Runbook::Statements::Notice.new(
+      Runbook::Statements::Notice.new(
         attrs[:msg]
       )
     when :ruby_command
@@ -127,13 +127,13 @@ module Factory
       attrs = {
         cmd: cmd
       }.merge!(overrides)
-      return Runbook::Statements::RubyCommand.new(&attrs[:cmd])
+      Runbook::Statements::RubyCommand.new(&attrs[:cmd])
     when :tmux_command
       attrs = {
         cmd: "echo 'hi'",
         pane: :pane1
       }.merge!(overrides)
-      return Runbook::Statements::TmuxCommand.new(
+      Runbook::Statements::TmuxCommand.new(
         attrs[:cmd],
         attrs[:pane]
       )
@@ -142,7 +142,7 @@ module Factory
         from: "my_file.txt",
         to: "/root/my_file.txt"
       }.merge!(overrides)
-      return Runbook::Statements::Upload.new(
+      Runbook::Statements::Upload.new(
         attrs[:from],
         to: attrs[:to]
       )
@@ -150,7 +150,7 @@ module Factory
       attrs = {
         time: 120
       }.merge!(overrides)
-      return Runbook::Statements::Wait.new(
+      Runbook::Statements::Wait.new(
         attrs[:time]
       )
     else

@@ -27,7 +27,7 @@ module Runbook::Helpers
         object = object.parent
       end
 
-      return blank_config
+      blank_config
     end
 
     def render_ssh_config_output(ssh_config)

@@ -32,13 +32,11 @@ module Runbook
     module Invoker
       def invoke_with_hooks(executor, object, *args, &block)
         skip_before = skip_around = skip_after = false
-        if executor <= Runbook::Run
-          if executor.should_skip?(args[0])
-            if executor.start_at_is_substep?(object, args[0])
-              skip_before = skip_around = true
-            else
-              skip_before = skip_around = skip_after = true
-            end
+        if (executor <= Runbook::Run) && executor.should_skip?(args[0])
+          if executor.start_at_is_substep?(object, args[0])
+            skip_before = skip_around = true
+          else
+            skip_before = skip_around = skip_after = true
           end
         end
 

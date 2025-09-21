@@ -29,10 +29,8 @@ module Runbook
       merge(additional_metadata)
 
       stored_pose = _stored_position(metadata)
-      if metadata[:start_at] == "0" && stored_pose
-        if _resume_previous_pose?(metadata, stored_pose)
-          metadata[:start_at] = stored_pose
-        end
+      if metadata[:start_at] == "0" && stored_pose && _resume_previous_pose?(metadata, stored_pose)
+        metadata[:start_at] = stored_pose
       end
 
       if metadata[:start_at] != "0"

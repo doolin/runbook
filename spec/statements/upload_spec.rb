@@ -4,20 +4,20 @@ RSpec.describe Runbook::Statements::Upload do
   let(:from) { "my_file.txt" }
   let(:to) { "/root/my_file.txt" }
   let(:options) { { recursive: true } }
-  let(:ssh_config) {
+  let(:ssh_config) do
     {
       servers: ["server1.prod"],
       path: "/home/bobby_mcgee"
     }
-  }
-  let(:upload) {
+  end
+  let(:upload) do
     Runbook::Statements::Upload.new(
       from,
       to: to,
       ssh_config: ssh_config,
       options: options
     )
-  }
+  end
 
   it "has a from" do
     expect(upload.from).to eq(from)

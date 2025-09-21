@@ -4,19 +4,19 @@ RSpec.describe Runbook::Util::Repo, type: :aruba do
   let(:toolbox) { Runbook::Toolbox.new }
   let(:book_title) { "My Amazing Runbook" }
   let(:repo) { { some: :thing } }
-  let(:metadata) {
+  let(:metadata) do
     Runbook::Util::StickyHash.new.merge({
       toolbox: toolbox,
       book_title: book_title,
       repo: Runbook::Util::Glue.new(repo)
     })
-  }
-  let(:file) {
+  end
+  let(:file) do
     Runbook::Util::Repo._file(book_title)
-  }
-  let(:file_content) {
+  end
+  let(:file_content) do
     repo.to_yaml
-  }
+  end
 
   before(:each) do
     allow(toolbox).to receive(:output)

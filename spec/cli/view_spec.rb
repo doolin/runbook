@@ -42,9 +42,9 @@ RSpec.describe "runbook view", type: :aruba do
 
     context "when an unknown file is passed in as an argument" do
       let(:command) { "runbook view unknown" }
-      let(:unknown_file_output) {
+      let(:unknown_file_output) do
         "view: cannot access unknown: No such file or directory"
-      }
+      end
 
       it "prints an unknown file message" do
         expect(last_command_started).to have_output(unknown_file_output)
@@ -84,9 +84,9 @@ RSpec.describe "runbook view", type: :aruba do
 
       context "when config does not exist" do
         let(:command) { "runbook view --config unknown #{runbook_file}" }
-        let(:unknown_file_output) {
+        let(:unknown_file_output) do
           "view: cannot access unknown: No such file or directory"
-        }
+        end
 
         it "prints an unknown file message" do
           expect(

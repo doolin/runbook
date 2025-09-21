@@ -40,38 +40,38 @@ RSpec.describe Runbook::Hooks do
 
   describe "hooks_for" do
     let(:block) { Proc.new {} }
-    let (:hook_1) {
+    let (:hook_1) do
       {
         name: :hook_1,
         type: :before,
         klass: Runbook::Entities::Book,
         block: block
       }
-    }
-    let (:hook_2) {
+    end
+    let (:hook_2) do
       {
         name: :hook_2,
         type: :before,
         klass: Runbook::Entity,
         block: block
       }
-    }
-    let (:hook_3) {
+    end
+    let (:hook_3) do
       {
         name: :hook_3,
         type: :around,
         klass: Runbook::Statements::Note,
         block: block
       }
-    }
-    let (:hook_4) {
+    end
+    let (:hook_4) do
       {
         name: :hook_4,
         type: :after,
         klass: Runbook::Statement,
         block: block
       }
-    }
+    end
     let(:hooks) { [hook_1, hook_2, hook_3, hook_4] }
 
     before(:each) do
@@ -90,94 +90,94 @@ RSpec.describe Runbook::Hooks do
   end
 
   describe "invoke_with_hooks" do
-    subject {
-      Class.new {
+    subject do
+      Class.new do
         include Runbook::Run
 
         def self.result
           @result ||= []
         end
-      }
-    }
-    let(:object) {
-      Class.new(Runbook::Entity) {
+      end
+    end
+    let(:object) do
+      Class.new(Runbook::Entity) do
         include Runbook::Hooks::Invoker
         def initialize; end
-      }.new
-    }
+      end.new
+    end
     let(:position) { "0" }
     let(:start_at) { "0" }
-    let(:metadata) {
+    let(:metadata) do
       { position: position, start_at: start_at }
-    }
-    let (:hook_1) {
+    end
+    let (:hook_1) do
       {
         name: :hook_1,
         type: :before,
         klass: object.class,
-        block: Proc.new { |object, metadata|
+        block: Proc.new do |object, metadata|
           result << "before hook_1"
-        }
+        end
       }
-    }
-    let (:hook_2) {
+    end
+    let (:hook_2) do
       {
         name: :hook_2,
         type: :before,
         klass: object.class,
-        block: Proc.new { |object, metadata|
+        block: Proc.new do |object, metadata|
           result << "before hook_2"
-        }
+        end
       }
-    }
-    let (:hook_3) {
+    end
+    let (:hook_3) do
       {
         name: :hook_3,
         type: :around,
         klass: object.class,
-        block: Proc.new { |object, metadata, block|
+        block: Proc.new do |object, metadata, block|
           result << "around before hook_3"
           block.call(object, metadata)
           result << "around after hook_3"
-        }
+        end
       }
-    }
-    let (:hook_4) {
+    end
+    let (:hook_4) do
       {
         name: :hook_4,
         type: :around,
         klass: object.class,
-        block: Proc.new { |object, metadata, block|
+        block: Proc.new do |object, metadata, block|
           result << "around before hook_4"
           block.call(object, metadata)
           result << "around after hook_4"
 
-        }
+        end
       }
-    }
-    let (:hook_5) {
+    end
+    let (:hook_5) do
       {
         name: :hook_5,
         type: :after,
         klass: object.class,
-        block: Proc.new { |object, metadata|
+        block: Proc.new do |object, metadata|
           result << "after hook_5"
-        }
+        end
       }
-    }
-    let (:hook_6) {
+    end
+    let (:hook_6) do
       {
         name: :hook_6,
         type: :after,
         klass: object.class,
-        block: Proc.new { |object, metadata|
+        block: Proc.new do |object, metadata|
           result << "after hook_6"
-        }
+        end
       }
-    }
-    let(:hooks) {
+    end
+    let(:hooks) do
       [hook_1, hook_2, hook_3, hook_4, hook_5, hook_6]
-    }
+    end
 
     before(:each) do
       subject.hooks.clear

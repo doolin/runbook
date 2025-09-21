@@ -5,9 +5,9 @@ RSpec.describe Runbook::Toolbox do
   let(:toolbox) { Runbook::Toolbox.new }
   let(:msg) { "Something I want to say" }
   let(:default) { "default" }
-  let(:choices) { [
+  let(:choices) do [
     { key: "y", name: "Yes", value: true }
-  ] }
+  ] end
 
   before(:each) do
     allow(TTY::Prompt).to receive(:new).and_return(prompt)

@@ -4,20 +4,20 @@ RSpec.describe Runbook::Statements::Download do
   let(:from) { "/root/my_file.txt" }
   let(:to) { "my_file.txt" }
   let(:options) { { recursive: true } }
-  let(:ssh_config) {
+  let(:ssh_config) do
     {
       servers: ["server1.prod"],
       path: "/home/bobby_mcgee"
     }
-  }
-  let(:download) {
+  end
+  let(:download) do
     Runbook::Statements::Download.new(
       from,
       to: to,
       ssh_config: ssh_config,
       options: options
     )
-  }
+  end
 
   it "has a from" do
     expect(download.from).to eq(from)

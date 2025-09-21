@@ -63,23 +63,23 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
 
   describe "find_ssh_config" do
     let(:metadata) { {} }
-    let(:blank_ssh_config) {
+    let(:blank_ssh_config) do
       Runbook::Extensions::SSHConfig.blank_ssh_config
-    }
-    let(:stmt_ssh_config) {
+    end
+    let(:stmt_ssh_config) do
       blank_ssh_config[:servers] << "stmt_server.prod"
-    }
-    let(:object) {
+    end
+    let(:object) do
       Runbook::Statements::Command.new("ls")
-    }
+    end
     let(:step_server) { "step_server.prod" }
-    let(:step) {
+    let(:step) do
       Runbook::Entities::Step.new("Step 1")
-    }
+    end
     let(:section_server) { "section_server.prod" }
-    let(:section) {
+    let(:section) do
       Runbook::Entities::Section.new("Section 1")
-    }
+    end
 
     before(:each) { section.add(step); step.add(object) }
 
@@ -309,9 +309,9 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
         expect(SSHKit.config).to receive(:umask=).with(old_umask).ordered.and_call_original
 
         internal_umask = nil
-        subject.with_ssh_config(ssh_config) {
+        subject.with_ssh_config(ssh_config) do
           internal_umask = SSHKit.config.umask
-        }
+        end
 
         expect(internal_umask).to eq(umask)
         expect(SSHKit.config.umask).to eq(old_umask)

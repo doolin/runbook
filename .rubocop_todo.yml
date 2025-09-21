@@ -498,41 +498,6 @@ Style/BarePercentLiterals:
     - 'spec/fullstack/sshkit_spec.rb'
     - 'spec/statements/assert_spec.rb'
 
-# Offense count: 107
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, ProceduralMethods, FunctionalMethods, AllowedMethods, AllowedPatterns, AllowBracesOnProceduralOneLiners, BracesRequiredMethods.
-# SupportedStyles: line_count_based, semantic, braces_for_chaining, always_braces
-# ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
-# FunctionalMethods: let, let!, subject, watch
-# AllowedMethods: lambda, proc, it
-Style/BlockDelimiters:
-  Exclude:
-    - 'lib/runbook/util/runbook.rb'
-    - 'spec/cli/cli_spec.rb'
-    - 'spec/cli/exec_spec.rb'
-    - 'spec/cli/generator_spec.rb'
-    - 'spec/cli/init_spec.rb'
-    - 'spec/cli/view_spec.rb'
-    - 'spec/entities/section_spec.rb'
-    - 'spec/fullstack/sshkit_spec.rb'
-    - 'spec/fullstack/tmux_spec.rb'
-    - 'spec/helpers/ssh_kit_helper_spec.rb'
-    - 'spec/helpers/tmux_helper_spec.rb'
-    - 'spec/hooks_spec.rb'
-    - 'spec/run_spec.rb'
-    - 'spec/runner_spec.rb'
-    - 'spec/runs/ssh_kit_spec.rb'
-    - 'spec/statements/ask_spec.rb'
-    - 'spec/statements/capture_all_spec.rb'
-    - 'spec/statements/capture_spec.rb'
-    - 'spec/statements/command_spec.rb'
-    - 'spec/statements/download_spec.rb'
-    - 'spec/statements/tmux_command_spec.rb'
-    - 'spec/statements/upload_spec.rb'
-    - 'spec/toolbox_spec.rb'
-    - 'spec/util/repo_spec.rb'
-    - 'spec/util/stored_pose_spec.rb'
-
 # Offense count: 43
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle, EnforcedStyleForClasses, EnforcedStyleForModules.

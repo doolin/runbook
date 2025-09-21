@@ -23,12 +23,12 @@ RSpec.describe "runbook run", type: :aruba do
     end
     RUNBOOK
   end
-  let(:repo_file) {
+  let(:repo_file) do
     Runbook::Util::Repo._file(book_title)
-  }
-  let(:stored_pose_file) {
+  end
+  let(:stored_pose_file) do
     Runbook::Util::StoredPose._file(book_title)
-  }
+  end
 
   before(:each) { write_file(config_file, config_content) }
   before(:each) { write_file(runbook_file, content) }
@@ -53,11 +53,11 @@ RSpec.describe "runbook run", type: :aruba do
         end
         RUNBOOK
       end
-      let(:output_lines) {
+      let(:output_lines) do
         [
           /`quest` cannot be referenced at compile time./
         ]
-      }
+      end
 
       it "executes the runbook" do
         output_lines.each do |line|
@@ -70,14 +70,14 @@ RSpec.describe "runbook run", type: :aruba do
   describe "input specification" do
     context "runbook is passed as an argument" do
       let(:command) { "runbook exec -P #{runbook_file}" }
-      let(:output_lines) {
+      let(:output_lines) do
         [
           /Executing My Runbook\.\.\./,
           /Section 1: First Section/,
           /Step 1\.1: Print stuff/,
           /.*echo 'hi'.*/
         ]
-      }
+      end
 
       it "executes the runbook" do
         output_lines.each do |line|
@@ -109,9 +109,9 @@ RSpec.describe "runbook run", type: :aruba do
 
     context "when an unknown file is passed in as an argument" do
       let(:command) { "runbook exec unknown" }
-      let(:unknown_file_output) {
+      let(:unknown_file_output) do
         "exec: cannot access unknown: No such file or directory"
-      }
+      end
 
       it "prints an unknown file message" do
         expect(last_command_started).to have_output(unknown_file_output)
@@ -120,14 +120,14 @@ RSpec.describe "runbook run", type: :aruba do
 
     context "when noop is passed" do
       let(:command) { "runbook exec --noop #{runbook_file}" }
-      let(:output_lines) {
+      let(:output_lines) do
         [
           /Executing My Runbook\.\.\./,
           /Section 1: First Section/,
           /Step 1\.1: Print stuff/,
           /.*\[NOOP\] Run: `echo 'hi'`.*/
         ]
-      }
+      end
 
       it "noops the runbook" do
         output_lines.each do |line|
@@ -164,14 +164,14 @@ RSpec.describe "runbook run", type: :aruba do
         end
         RUNBOOK
       end
-      let(:output_lines) {
+      let(:output_lines) do
         [
           /Executing My Runbook\.\.\./,
           /Section 1: First Section/,
           /Step 1\.1: Ask stuff/,
           /.*Skipping confirmation \(auto\): You sure\?.*/
         ]
-      }
+      end
 
       it "does not prompt" do
         output_lines.each do |line|
@@ -201,13 +201,13 @@ RSpec.describe "runbook run", type: :aruba do
         end
         RUNBOOK
       end
-      let(:output_lines) {
+      let(:output_lines) do
         [
           /Executing My Runbook\.\.\./,
           /Section 1: First Section/,
           /Step 1\.1: Do not ask for continue/
         ]
-      }
+      end
 
       it "does not prompt" do
         output_lines.each do |line|
@@ -309,23 +309,23 @@ RSpec.describe "runbook run", type: :aruba do
         end
         RUNBOOK
       end
-      let(:total_output) {
+      let(:total_output) do
         title_output +
         description_output +
         after_description_output +
         section_1_output +
         section_2_output
-      }
-      let(:title_output) {
+      end
+      let(:title_output) do
         [/Executing My Runbook\.\.\./]
-      }
-      let(:description_output) {
+      end
+      let(:description_output) do
         [/My description/]
-      }
-      let(:after_description_output) {
+      end
+      let(:after_description_output) do
         [/After description hook/]
-      }
-      let(:section_1_output) {
+      end
+      let(:section_1_output) do
         [
           /Section 1: First Section/
         ] +
@@ -333,41 +333,41 @@ RSpec.describe "runbook run", type: :aruba do
         step_1_1_output +
         step_1_2_title +
         step_1_2_output
-      }
-      let(:step_1_1_title) {
+      end
+      let(:step_1_1_title) do
         [/Step 1\.1: Ask for continue/]
-      }
-      let(:step_1_1_output) {
+      end
+      let(:step_1_1_output) do
         [/Note: hi/]
-      }
-      let(:step_1_2_title) {
+      end
+      let(:step_1_2_title) do
         [/Step 1\.2: Another step/]
-      }
-      let(:step_1_2_output) {
+      end
+      let(:step_1_2_output) do
         [/Note: step here/]
-      }
-      let(:section_2_output) {
+      end
+      let(:section_2_output) do
         section_2_title +
         step_2_1_title +
         step_2_1_output +
         step_2_2_title +
         step_2_2_output
-      }
-      let(:section_2_title) {
+      end
+      let(:section_2_title) do
         [/Section 2: Second Section/]
-      }
-      let(:step_2_1_title) {
+      end
+      let(:step_2_1_title) do
         [/Step 2\.1: skip me/]
-      }
-      let(:step_2_1_output) {
+      end
+      let(:step_2_1_output) do
         [/Note: never run/]
-      }
-      let(:step_2_2_title) {
+      end
+      let(:step_2_2_title) do
         [/Step 2\.2: Jump here/]
-      }
-      let(:step_2_2_output) {
+      end
+      let(:step_2_2_output) do
         [/Note: you jumped/]
-      }
+      end
 
       it "prompts to continue" do
         type("c\nc\nc\nc")
@@ -579,7 +579,7 @@ RSpec.describe "runbook run", type: :aruba do
         end
         RUNBOOK
       end
-      let(:output_lines) {
+      let(:output_lines) do
         [
           /Executing My Runbook\.\.\./,
           /rice pudding/,
@@ -588,14 +588,14 @@ RSpec.describe "runbook run", type: :aruba do
           /Step 1\.3: Run me/,
           /peas/
         ]
-      }
-      let(:non_output_lines) {
+      end
+      let(:non_output_lines) do
         [
           /Section 1: First Section/,
           /Skip me/,
           /fish/
         ]
-      }
+      end
 
       it "starts at the specified position" do
         output_lines.each do |line|
@@ -622,14 +622,14 @@ RSpec.describe "runbook run", type: :aruba do
 
     context "when run is passed" do
       let(:command) { "runbook exec -P --run ssh_kit #{runbook_file}" }
-      let(:output_lines) {
+      let(:output_lines) do
         [
           /Executing My Runbook\.\.\./,
           /Section 1: First Section/,
           /Step 1\.1: Print stuff/,
           /.*echo 'hi'.*/
         ]
-      }
+      end
 
       it "runs the runbook" do
         output_lines.each do |line|
@@ -665,9 +665,9 @@ RSpec.describe "runbook run", type: :aruba do
 
       context "when config does not exist" do
         let(:command) { "runbook exec -P --config unknown #{runbook_file}" }
-        let(:unknown_file_output) {
+        let(:unknown_file_output) do
           "exec: cannot access unknown: No such file or directory"
-        }
+        end
 
         it "prints an unknown file message" do
           expect(
@@ -679,12 +679,12 @@ RSpec.describe "runbook run", type: :aruba do
 
     context "persisted state" do
       let(:book_title) { "My Persisted Runbook" }
-      let(:repo_file) {
+      let(:repo_file) do
         Runbook::Util::Repo._file(book_title)
-      }
-      let(:stored_pose_file) {
+      end
+      let(:stored_pose_file) do
         Runbook::Util::StoredPose._file(book_title)
-      }
+      end
       let(:message) { "Hello!" }
       let(:content) do
         <<-RUNBOOK

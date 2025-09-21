@@ -5,14 +5,14 @@ RSpec.describe Runbook::Statements::Ask do
   let(:into) { :num_kisses }
   let(:default) { "7" }
   let(:echo) { true }
-  let(:ask) {
+  let(:ask) do
     Runbook::Statements::Ask.new(
       prompt,
       into: into,
       default: default,
       echo: echo
     )
-  }
+  end
 
   it "has a prompt" do
     expect(ask.prompt).to eq(prompt)

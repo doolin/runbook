@@ -5,7 +5,7 @@ RSpec.describe Runbook::Runs::SSHKit do
   let (:metadata_override) { {} }
   let (:parent) { Runbook::Entities::Step.new }
   let (:toolbox) { instance_double("Runbook::Toolbox") }
-  let (:metadata) {
+  let (:metadata) do
     {
       noop: false,
       auto: false,
@@ -17,13 +17,13 @@ RSpec.describe Runbook::Runs::SSHKit do
       book_title: "My Book Title",
       repo: {}
     }.merge(metadata_override)
-  }
+  end
 
   before(:each) { object.parent = parent }
-  before(:each) {
+  before(:each) do
     allow(Runbook::Util::Repo).to receive(:save)
     allow(Runbook::Util::StoredPose).to receive(:save)
-  }
+  end
 
   describe "runbook__entities__assert" do
     let (:cmd) { "echo 'hi'" }
@@ -990,9 +990,9 @@ RSpec.describe Runbook::Runs::SSHKit do
     let (:to) { "auth.log" }
     let(:options) { { log_percent: 25 } }
     let(:download_args) { [from, to, options] }
-    let (:object) {
+    let (:object) do
       Runbook::Statements::Download.new(from, to: to, options: options)
-    }
+    end
 
     before(:each) do
       allow(toolbox).to receive(:output)
@@ -1089,9 +1089,9 @@ RSpec.describe Runbook::Runs::SSHKit do
     let (:to) { "/home/bozo/customer_list.txt" }
     let(:options) { { log_percent: 25 } }
     let(:upload_args) { [from, to, options] }
-    let (:object) {
+    let (:object) do
       Runbook::Statements::Upload.new(from, to: to, options: options)
-    }
+    end
 
     before(:each) do
       allow(toolbox).to receive(:output)

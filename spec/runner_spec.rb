@@ -455,9 +455,9 @@ Note: Run me last
 
     context "with layout_panes" do
       let(:my_layout) { [:runbook, :deploy] }
-      let(:layout_panes) {
+      let(:layout_panes) do
         { :runbook => "%1", :deploy => "%3" }
-      }
+      end
       let(:book) do
         Runbook.book title do
           layout [:runbook, :deploy]

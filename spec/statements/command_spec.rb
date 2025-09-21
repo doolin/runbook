@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Runbook::Statements::Command do
   let(:cmd) { "echo 'hi'" }
-  let(:ssh_config) {
+  let(:ssh_config) do
     {
       servers: ["server1.prod"],
       parallelization: {
@@ -16,19 +16,19 @@ RSpec.describe Runbook::Statements::Command do
       env: { rails_env: "production" },
       umask: "077"
     }
-  }
+  end
   let(:raw) { true }
   let(:book) { Runbook::Entities::Book.new("My Book") }
   let(:parent) { Runbook::Entities::Step.new("My Step").tap { |step| step.parent = book } }
-  let(:command) {
+  let(:command) do
     Runbook::Statements::Command.new(
       cmd,
       ssh_config: ssh_config,
       raw: raw
     ).tap { |cmd| cmd.parent = parent }
-  }
+  end
   let(:toolbox) { instance_double("Runbook::Toolbox") }
-  let(:metadata) {
+  let(:metadata) do
     {
       noop: false,
       auto: false,
@@ -44,7 +44,7 @@ RSpec.describe Runbook::Statements::Command do
       reversed: Runbook::Util::Glue.new(false),
       book_title: "My Book"
     }
-  }
+  end
 
   it "has a command" do
     expect(command.cmd).to eq(cmd)

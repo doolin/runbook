@@ -103,21 +103,21 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
   end
 
   describe "_slug" do
-    let(:inputs) { [
+    let(:inputs) do [
       "My Runbook Title",
       "my Runbook title",
       "my/Runbook/title",
       "OTHER Runbook TITLE",
       "some      Runbook TITLE"
-    ] }
+    ] end
 
-    let(:outputs) { [
+    let(:outputs) do [
       "my-runbook-title",
       "my-runbook-title",
       "my-runbook-title",
       "other-runbook-title",
       "some-runbook-title"
-    ] }
+    ] end
 
     it "returns a slugified version of its argument" do
       inputs.each_with_index do |input, index|

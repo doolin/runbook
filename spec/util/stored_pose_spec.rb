@@ -4,19 +4,19 @@ RSpec.describe Runbook::Util::StoredPose, type: :aruba do
   let(:toolbox) { Runbook::Toolbox.new }
   let(:book_title) { "My Amazing Runbook" }
   let(:current_pose) { "1.1" }
-  let(:metadata) {
+  let(:metadata) do
     Runbook::Util::StickyHash.new.merge({
       toolbox: toolbox,
       book_title: book_title,
       position: current_pose
     })
-  }
-  let(:file) {
+  end
+  let(:file) do
     Runbook::Util::StoredPose._file(book_title)
-  }
-  let(:file_content) {
+  end
+  let(:file_content) do
     current_pose.to_yaml
-  }
+  end
 
   after(:each) do
     FileUtils.rm_f(file)

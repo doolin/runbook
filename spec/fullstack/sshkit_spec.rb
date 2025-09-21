@@ -17,12 +17,12 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
   end
   let(:runbook_file) { "my_runbook.rb" }
   let(:book_title) { "My Runbook" }
-  let(:repo_file) {
+  let(:repo_file) do
     Runbook::Util::Repo._file(book_title)
-  }
-  let(:stored_pose_file) {
+  end
+  let(:stored_pose_file) do
     Runbook::Util::StoredPose._file(book_title)
-  }
+  end
   let(:user) { ENV["USER"] }
 
   before(:all) do
@@ -81,11 +81,11 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
       end
       RUNBOOK
     end
-    let(:output_lines) {
+    let(:output_lines) do
       [
         /#{@cid[0..11]}/
       ]
-    }
+    end
 
     it "executes remote commands" do
       output_lines.each do |line|
@@ -114,11 +114,11 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
         end
         RUNBOOK
       end
-      let(:output_lines) {
+      let(:output_lines) do
         [
           / #{echo_output}$/
         ]
-      }
+      end
 
       it "does not break the command" do
         output_lines.each do |line|
@@ -147,11 +147,11 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
         end
         RUNBOOK
       end
-      let(:output_lines) {
+      let(:output_lines) do
         [
           /600/
         ]
-      }
+      end
 
       it "applies the specified umask" do
         output_lines.each do |line|

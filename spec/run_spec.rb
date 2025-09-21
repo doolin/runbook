@@ -9,7 +9,7 @@ RSpec.describe "Runbook::Run" do
   let (:position) { "" }
   let (:reverse) { Runbook::Util::Glue.new(false) }
   let (:reversed) { Runbook::Util::Glue.new(false) }
-  let (:metadata) {
+  let (:metadata) do
     {
       noop: false,
       auto: false,
@@ -24,7 +24,7 @@ RSpec.describe "Runbook::Run" do
       reverse: reverse,
       reversed: reversed
     }.merge(metadata_override)
-  }
+  end
 
   describe "execute" do
     it "executes on an object" do
@@ -263,9 +263,9 @@ RSpec.describe "Runbook::Run" do
 
       context "when default specified" do
         let (:default) { "Pope where a hat?" }
-        let (:object) {
+        let (:object) do
           Runbook::Statements::Ask.new(prompt, into: into, default: default)
-        }
+        end
 
         it "outputs the default text for the ask statement" do
           msg = "[NOOP] Ask: #{prompt} (store in: #{into}) (default: #{default})"
@@ -291,9 +291,9 @@ RSpec.describe "Runbook::Run" do
       end
 
       context "when echo: false specified" do
-        let (:object) {
+        let (:object) do
           Runbook::Statements::Ask.new(prompt, into: into, echo: false)
-        }
+        end
 
         it "outputs that echo is set to false" do
           msg = "[NOOP] Ask: #{prompt} (store in: #{into}) (echo: false)"
@@ -318,9 +318,9 @@ RSpec.describe "Runbook::Run" do
 
       context "when default specified" do
         let (:default) { "Pope where a hat?" }
-        let (:object) {
+        let (:object) do
           Runbook::Statements::Ask.new(prompt, into: into, default: default)
-        }
+        end
 
         it "sets the default value for the ask statement" do
           expect(toolbox).to_not receive(:ask)
@@ -359,9 +359,9 @@ RSpec.describe "Runbook::Run" do
 
     context "when default specified" do
       let (:default) { "Pope where a hat?" }
-      let (:object) {
+      let (:object) do
         Runbook::Statements::Ask.new(prompt, into: into, default: default)
-      }
+      end
 
       it "passes the default value to the ask statement" do
         result = "result"
@@ -375,9 +375,9 @@ RSpec.describe "Runbook::Run" do
       context "when previous instance variable set" do
         let (:default) { "Pope where a hat?" }
         let (:existing_val) { "Kineval ride a bike?" }
-        let (:object) {
+        let (:object) do
           Runbook::Statements::Ask.new(prompt, into: into, default: default)
-        }
+        end
 
         before(:each) do
           object.parent.dsl.instance_variable_set(:"@#{into}", existing_val)
@@ -397,9 +397,9 @@ RSpec.describe "Runbook::Run" do
     end
 
     context "when echo: false specified" do
-      let (:object) {
+      let (:object) do
         Runbook::Statements::Ask.new(prompt, into: into, echo: false)
-      }
+      end
 
       it "tells ask to not echo user input" do
         result = "result"
@@ -785,9 +785,9 @@ RSpec.describe "Runbook::Run" do
 
   describe "start_at_is_substep?" do
     context "when a non-entity is passed" do
-      let(:object) {
+      let(:object) do
         Runbook::Statements::Note.new("note")
-      }
+      end
 
       it "returns false" do
         expect(
@@ -797,9 +797,9 @@ RSpec.describe "Runbook::Run" do
     end
 
     context "when an entity is passed" do
-      let(:object) {
+      let(:object) do
         Runbook::Entities::Book.new("title")
-      }
+      end
 
       context "when metadata[:position] is empty" do
         let(:position) { "" }

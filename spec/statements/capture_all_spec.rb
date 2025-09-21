@@ -3,7 +3,7 @@ require "spec_helper"
 RSpec.describe Runbook::Statements::CaptureAll do
   let(:cmd) { "echo 'hi'" }
   let(:into) { :capture_result }
-  let(:ssh_config) {
+  let(:ssh_config) do
     {
       servers: ["server1.prod"],
       parallelization: {
@@ -17,10 +17,10 @@ RSpec.describe Runbook::Statements::CaptureAll do
       env: { rails_env: "production" },
       umask: "077"
     }
-  }
+  end
   let(:raw) { true }
   let(:strip) { false }
-  let(:capture_all) {
+  let(:capture_all) do
     Runbook::Statements::CaptureAll.new(
       cmd,
       into: into,
@@ -28,7 +28,7 @@ RSpec.describe Runbook::Statements::CaptureAll do
       raw: raw,
       strip: strip
     )
-  }
+  end
 
   it "has a command" do
     expect(capture_all.cmd).to eq(cmd)

@@ -45,9 +45,9 @@ RSpec.describe Runbook::Entities::Section do
 
     it "evaluates the block in the context of the section's dsl" do
       in_section = nil
-      out_section = section.section("My inner section") {
+      out_section = section.section("My inner section") do
         in_section = self
-      }
+      end
       expect(in_section).to eq(out_section.dsl)
     end
   end

@@ -4,12 +4,12 @@ require 'securerandom'
 RSpec.describe "runbook tmux integration", type: :aruba do
   let(:runbook_file) { "my_runbook.rb" }
   let(:book_title) { "My Runbook" }
-  let(:repo_file) {
+  let(:repo_file) do
     Runbook::Util::Repo._file(book_title)
-  }
-  let(:stored_pose_file) {
+  end
+  let(:stored_pose_file) do
     Runbook::Util::StoredPose._file(book_title)
-  }
+  end
 
   before(:all) do
     `docker build --rm -t runbook:latest -f dockerfiles/Dockerfile-runbook .`
@@ -53,11 +53,11 @@ RSpec.describe "runbook tmux integration", type: :aruba do
       "tmux new 'bundle exec exe/runbook exec -a /#{runbook_file}'"
     end
 
-    let(:output_lines) {
+    let(:output_lines) do
       [
         /Note: file touched/
       ]
-    }
+    end
 
     it "executes the command in the specified tmux pane" do
       output_lines.each do |line|

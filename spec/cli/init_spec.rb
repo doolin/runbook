@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe "runbook init", type: :aruba do
   let(:command) { "runbook init" }
-  let(:init_output) {
+  let(:init_output) do
     [
       "create  Runbookfile",
       "create  runbooks",
@@ -15,7 +15,7 @@ RSpec.describe "runbook init", type: :aruba do
       "Execute runbooks using `bundle exec runbook exec <RUNBOOK_PATH>",
       "from your project root."
     ]
-  }
+  end
 
   before(:each) { run_command(command) }
 

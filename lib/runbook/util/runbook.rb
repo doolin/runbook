@@ -30,14 +30,14 @@ module Runbook
   end
 
   def self._child_classes(mod)
-    mod.constants.map { |const|
+    mod.constants.map do |const|
       "#{mod.to_s}::#{const}".constantize
-    }.select { |const| const.is_a?(Class) }
+    end.select { |const| const.is_a?(Class) }
   end
 
   def self._child_modules(mod)
-    mod.constants.map { |const|
+    mod.constants.map do |const|
       "#{mod.to_s}::#{const}".constantize
-    }.select { |const| const.is_a?(Module) }
+    end.select { |const| const.is_a?(Module) }
   end
 end

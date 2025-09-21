@@ -146,7 +146,7 @@ module Runbook::Generators
         "Rakefile"
       )
 
-      gsub_file(target, /^require "bundler\/gem_tasks"\n/, "", verbose: false)
+      gsub_file(target, %r{^require "bundler/gem_tasks"\n}, "", verbose: false)
     end
 
     def create_ruby_version

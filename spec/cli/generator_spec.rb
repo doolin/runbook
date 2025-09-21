@@ -107,9 +107,9 @@ RSpec.describe "runbook generate", type: :aruba do
 
         it "generates a generator" do
           last_cmd = last_command_started
-          expect(last_cmd).to have_output(/create  #{root}\/my_gen/)
-          expect(last_cmd).to have_output(/create  #{root}\/my_gen\/templates/)
-          expect(last_cmd).to have_output(/create  #{root}\/my_gen\/my_gen.rb/)
+          expect(last_cmd).to have_output(%r{create  #{root}/my_gen})
+          expect(last_cmd).to have_output(%r{create  #{root}/my_gen/templates})
+          expect(last_cmd).to have_output(%r{create  #{root}/my_gen/my_gen.rb})
 
           expect(directory?("#{root}/my_gen")).to be_truthy
           expect(directory?("#{root}/my_gen/templates")).to be_truthy
@@ -126,7 +126,7 @@ RSpec.describe "runbook generate", type: :aruba do
 
           it "does not create the files" do
             last_cmd = last_command_started
-            expect(last_cmd).to have_output(/create  #{root}\/my_gen/)
+            expect(last_cmd).to have_output(%r{create  #{root}/my_gen})
 
             expect(file?("#{root}/my_gen")).to be_falsey
           end
@@ -154,12 +154,12 @@ RSpec.describe "runbook generate", type: :aruba do
 
           it "creates the Runbookfile" do
             expect(file?(runbookfile)).to be_truthy
-            expect(runbookfile).to have_file_content(/require_relative '#{root}\/my_gen\/my_gen'/)
+            expect(runbookfile).to have_file_content(%r{require_relative '#{root}/my_gen/my_gen'})
           end
 
           it "is present in help output" do
             last_cmd = last_command_started
-            expect(last_cmd).to have_output(/create  #{root}\/my_gen/)
+            expect(last_cmd).to have_output(%r{create  #{root}/my_gen})
 
             run_command("runbook generate help")
 
@@ -168,7 +168,7 @@ RSpec.describe "runbook generate", type: :aruba do
 
           it "does not blow up" do
             last_cmd = last_command_started
-            expect(last_cmd).to have_output(/create  #{root}\/my_gen/)
+            expect(last_cmd).to have_output(%r{create  #{root}/my_gen})
 
             run_command("runbook generate my_gen #{root_opt} --help")
 
@@ -195,7 +195,7 @@ RSpec.describe "runbook generate", type: :aruba do
 
         it "generates a runbook" do
           last_cmd = last_command_started
-          expect(last_cmd).to have_output(/create  #{root}\/my_runbook.rb/)
+          expect(last_cmd).to have_output(%r{create  #{root}/my_runbook.rb})
 
           expect(file?("#{root}/my_runbook.rb")).to be_truthy
 
@@ -208,7 +208,7 @@ RSpec.describe "runbook generate", type: :aruba do
 
           it "does not blow up" do
             last_cmd = last_command_started
-            expect(last_cmd).to have_output(/create  #{root}\/my_runbook.rb/)
+            expect(last_cmd).to have_output(%r{create  #{root}/my_runbook.rb})
 
             run_command("runbook exec -a #{root}/my_runbook.rb")
 
@@ -234,7 +234,7 @@ RSpec.describe "runbook generate", type: :aruba do
 
         it "generates a statement" do
           last_cmd = last_command_started
-          expect(last_cmd).to have_output(/create  #{root}\/my_statement.rb/)
+          expect(last_cmd).to have_output(%r{create  #{root}/my_statement.rb})
 
           expect(file?("#{root}/my_statement.rb")).to be_truthy
 
@@ -263,7 +263,7 @@ RSpec.describe "runbook generate", type: :aruba do
 
             it "exercises the statement" do
               last_cmd = last_command_started
-              expect(last_cmd).to have_output(/create  #{root}\/my_statement.rb/)
+              expect(last_cmd).to have_output(%r{create  #{root}/my_statement.rb})
 
               run_command("sed -i '' 's/MyProject/Runbook/' #{root}/my_statement.rb")
               run_command("runbook view my_runbook.rb")
@@ -279,7 +279,7 @@ RSpec.describe "runbook generate", type: :aruba do
 
             it "exercises the statement" do
               last_cmd = last_command_started
-              expect(last_cmd).to have_output(/create  #{root}\/my_statement.rb/)
+              expect(last_cmd).to have_output(%r{create  #{root}/my_statement.rb})
 
               run_command("sed -i '' -e 's/MyProject/Runbook/' -e 's/#{exec_sentinel}/#{exec_statement}/' #{root}/my_statement.rb")
               run_command("runbook exec -a my_runbook.rb")
@@ -322,7 +322,7 @@ RSpec.describe "runbook generate", type: :aruba do
 
         it "generates a dsl_extension" do
           last_cmd = last_command_started
-          expect(last_cmd).to have_output(/create  #{root}\/rollback_section.rb/)
+          expect(last_cmd).to have_output(%r{create  #{root}/rollback_section.rb})
 
           expect(file?("#{root}/rollback_section.rb")).to be_truthy
 
@@ -352,7 +352,7 @@ RSpec.describe "runbook generate", type: :aruba do
 
             it "exercises the dsl_extension" do
               last_cmd = last_command_started
-              expect(last_cmd).to have_output(/create  #{root}\/rollback_section.rb/)
+              expect(last_cmd).to have_output(%r{create  #{root}/rollback_section.rb})
               run_command("runbook view my_runbook.rb")
               expect(last_command_started).to have_output(/Rollback Section/)
             end
@@ -363,7 +363,7 @@ RSpec.describe "runbook generate", type: :aruba do
 
             it "exercises the dsl_extension" do
               last_cmd = last_command_started
-              expect(last_cmd).to have_output(/create  #{root}\/rollback_section.rb/)
+              expect(last_cmd).to have_output(%r{create  #{root}/rollback_section.rb})
               run_command("runbook exec my_runbook.rb")
               expect(last_command_started).to have_output(/1. Rollback Section/)
             end

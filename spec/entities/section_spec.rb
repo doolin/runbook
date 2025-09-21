@@ -76,7 +76,7 @@ RSpec.describe Runbook::Entities::Section do
     end
 
     it "does not require a title" do
-      expect((section.step {}).title).to be_nil
+      expect(section.step {}.title).to be_nil
     end
 
     it "does not require a block" do

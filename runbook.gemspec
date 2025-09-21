@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["pblesi"]
   spec.email         = ["code@getbraintree.com"]
 
-  spec.summary       = %q(Write beautiful, executable runbooks for conducting system operations.)
-  spec.description   = %q(Runbook provides a DSL for specifying system operations. This DSL is used to generate formatted runbooks as well as interactive runbooks to be executed on the command line.)
+  spec.summary       = 'Write beautiful, executable runbooks for conducting system operations.'
+  spec.description   = 'Runbook provides a DSL for specifying system operations. This DSL is used to generate formatted runbooks as well as interactive runbooks to be executed on the command line.'
   spec.homepage      = "https://github.com/braintree/runbook/"
   spec.license       = "MIT"
   spec.required_ruby_version = '>= 2.2.3'

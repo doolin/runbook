@@ -7,7 +7,7 @@ RSpec.describe Runbook::Statements::Assert do
   let(:interval) { 0.5 }
   let(:timeout) { 600 }
   let(:attempts) { 3 }
-  let(:timeout_cmd) { %Q(mail -S "Error" me@me.com) }
+  let(:timeout_cmd) { 'mail -S "Error" me@me.com' }
   let(:timeout_cmd_ssh_config) { { servers: [], parallelization: {} } }
   let(:timeout_cmd_raw) { true }
   let(:abort_statement) do

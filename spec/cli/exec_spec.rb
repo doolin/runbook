@@ -404,7 +404,7 @@ RSpec.describe "runbook run", type: :aruba do
           (total_output - excludes).each do |line|
             expect(last_command_started).to have_output(line)
           end
-          (excludes).each do |line|
+          excludes.each do |line|
             expect(last_command_started).to_not have_output(line)
           end
         end

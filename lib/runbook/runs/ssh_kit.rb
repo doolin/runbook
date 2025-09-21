@@ -44,13 +44,13 @@ module Runbook::Runs
         with_ssh_config(cmd_ssh_config) do
           time = Time.now
           count = object.attempts
-          while !(test(*test_args, test_options))
+          while !test(*test_args, test_options)
             if ((count -= 1) == 0)
               should_abort = true
               break
             end
 
-            if (object.timeout > 0 && Time.now - time > object.timeout)
+            if object.timeout > 0 && Time.now - time > object.timeout
               should_abort = true
               break
             end

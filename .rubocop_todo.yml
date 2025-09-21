@@ -815,29 +815,6 @@ Style/RedundantInterpolation:
   Exclude:
     - 'lib/runbook/entity.rb'
 
-# Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantParentheses:
-  Exclude:
-    - 'lib/runbook/cli.rb'
-    - 'lib/runbook/generators/project/project.rb'
-    - 'lib/runbook/runs/ssh_kit.rb'
-    - 'spec/cli/exec_spec.rb'
-    - 'spec/helpers/tmux_helper_spec.rb'
-
-# Offense count: 16
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantPercentQ:
-  Exclude:
-    - 'examples/restart_nginx.rb'
-    - 'lib/runbook/generators/project/project.rb'
-    - 'runbook.gemspec'
-    - 'spec/cli/cli_spec.rb'
-    - 'spec/cli/generator_spec.rb'
-    - 'spec/fullstack/sshkit_spec.rb'
-    - 'spec/statements/assert_spec.rb'
-    - 'spec/viewer_spec.rb'
-
 # Offense count: 25
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowMultipleReturnValues.

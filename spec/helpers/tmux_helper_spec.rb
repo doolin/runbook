@@ -174,7 +174,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
       let(:structure) { [] }
 
       it "does not execute any tmux commands" do
-        (tmux_mutator_methods).each do |method|
+        tmux_mutator_methods.each do |method|
           expect(subject).to_not receive(method)
         end
 

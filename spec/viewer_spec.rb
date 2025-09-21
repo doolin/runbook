@@ -68,7 +68,7 @@ MARKDOWN
                 env rails_env: "production"
                 umask "077"
 
-                command %q(echo "hi")
+                command 'echo "hi"'
               end
             end
           end
@@ -114,7 +114,7 @@ MARKDOWN
             section "Section" do
               step "Step" do
                 servers *server_list
-                command %q(echo "hi")
+                command 'echo "hi"'
               end
             end
           end
@@ -144,7 +144,7 @@ MARKDOWN
             section "Section" do
               step "Step" do
                 parallelization strategy: :groups, limit: 10, wait: 5
-                command %q(echo "hi")
+                command 'echo "hi"'
               end
             end
           end
@@ -174,7 +174,7 @@ MARKDOWN
             section "Section" do
               step "Step" do
                 parallelization strategy: :parallel, limit: 10, wait: 5
-                command %q(echo "hi")
+                command 'echo "hi"'
               end
             end
           end

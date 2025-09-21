@@ -99,12 +99,10 @@ module Runbook
         Runbook.books.last || eval(File.read(runbook))
       rescue NameError => e
         if Runbook.runtime_methods.include?(e.name)
-          message = (
-            "Runtime method `#{e.name}` cannot be referenced at " \
+          message = "Runtime method `#{e.name}` cannot be referenced at " \
             "compile time. Wrap statements referencing it in a " \
             "`ruby_command` block in order to invoke the code at " \
             "runtime."
-          )
           raise e, message, e.backtrace
         end
 

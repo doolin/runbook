@@ -35,7 +35,7 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
   around(:each) do |example|
     ports = "-p 10022:22"
     mount = "-v #{SHARED_CONFIG[:key_dir]}/id_rsa.pub:/etc/authorized_keys/$USER"
-    users = %Q(-e SSH_USERS="$USER:500:500")
+    users = '-e SSH_USERS="$USER:500:500"'
 
     begin
       run_cmd = "docker run -d #{ports} #{mount} #{users} sshd:latest 2>/dev/null"

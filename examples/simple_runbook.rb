@@ -9,7 +9,7 @@ This is a simple runbook that does stuff
   section "Parent Section" do
     section "First Section" do
       step "Step 1" do
-        parallelization({strategy: :sequence})
+        parallelization({ strategy: :sequence })
         servers "pblesi@server01.stg", "pblesi@server02.stg"
 				user "root"
 				path "/home/pblesi"

@@ -18,7 +18,7 @@ RSpec.describe Runbook::Entities::Section do
   end
 
   context "with labels" do
-    let(:labels) { {env: :staging} }
+    let(:labels) { { env: :staging } }
     let(:section) { Runbook::Entities::Section.new(title, labels: labels) }
 
     it "has labels" do
@@ -209,7 +209,7 @@ RSpec.describe Runbook::Entities::Section do
   end
 
   describe "#env" do
-    let(:env) { {rails_env: "production"} }
+    let(:env) { { rails_env: "production" } }
 
     it "sets the remote environment for the section" do
       section.env(env)
@@ -236,18 +236,18 @@ RSpec.describe Runbook::Entities::Section do
         path "/home"
         user "root"
         group "root"
-        env({path: "/usr/bin"})
+        env({ path: "/usr/bin" })
         umask "077"
       end
 
       expect(ssh_config).to eq(
         {
-          parallelization: {strategy: :sequence, limit: 2, wait: 5},
+          parallelization: { strategy: :sequence, limit: 2, wait: 5 },
           servers: ["s1.prod"],
           path: "/home",
           user: "root",
           group: "root",
-          env: {path: "/usr/bin"},
+          env: { path: "/usr/bin" },
           umask: "077"
         }
       )

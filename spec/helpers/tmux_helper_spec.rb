@@ -16,8 +16,8 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
     let(:structure) { [:runbook, :other] }
     let(:title) { "My Amazing Runbook" }
     let(:layout_file) { "/tmp/runbook_layout_12345_me_123_%0_amazing_runbook.yml" }
-    let(:stored_layout) { {:runbook => "%1", :other => "%3", :new => "%5"} }
-    let(:layout_panes) { {:runbook => "%1", :other => "%3"} }
+    let(:stored_layout) { { :runbook => "%1", :other => "%3", :new => "%5" } }
+    let(:layout_panes) { { :runbook => "%1", :other => "%3" } }
     let(:session_panes) { ["%0", "%1", "%2", "%3", "%4"] }
 
     before(:each) do
@@ -47,8 +47,8 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
       end
 
       context "when all panes exist" do
-        let(:stored_layout) { {:runbook => "%1", :other => "%3"} }
-        let(:layout_panes) { {:runbook => "%1", :other => "%3"} }
+        let(:stored_layout) { { :runbook => "%1", :other => "%3" } }
+        let(:layout_panes) { { :runbook => "%1", :other => "%3" } }
         let(:session_panes) { ["%0", "%1", "%2", "%3", "%4"] }
 
         it "returns the stored layout" do
@@ -87,7 +87,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
 
   describe "kill_all_panes" do
     let(:runbook_pane) { "%23" }
-    let(:layout_panes) { {:some => "%45", :runbook => "%23", :thing => "%3"} }
+    let(:layout_panes) { { :some => "%45", :runbook => "%23", :thing => "%3" } }
 
     before(:each) do
       allow(subject).to receive(:_runbook_pane).and_return(runbook_pane)
@@ -201,7 +201,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
 
         layout_panes = subject._setup_layout(structure)
 
-        expect(layout_panes).to eq({name => runbook_pane_id})
+        expect(layout_panes).to eq({ name => runbook_pane_id })
       end
     end
 
@@ -217,7 +217,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
         layout_panes = subject._setup_layout(structure)
 
         expect(layout_panes).to eq(
-          {pane1: runbook_pane_id, pane2: pane_2_id}
+          { pane1: runbook_pane_id, pane2: pane_2_id }
         )
       end
     end
@@ -234,7 +234,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
         layout_panes = subject._setup_layout(structure)
 
         expect(layout_panes).to eq(
-          {pane1: runbook_pane_id, pane2: pane_2_id}
+          { pane1: runbook_pane_id, pane2: pane_2_id }
         )
       end
     end
@@ -253,7 +253,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
         layout_panes = subject._setup_layout(structure)
 
         expect(layout_panes).to eq(
-          {pane1: runbook_pane_id, pane2: pane_2_id, pane3: pane_3_id}
+          { pane1: runbook_pane_id, pane2: pane_2_id, pane3: pane_3_id }
         )
       end
     end
@@ -263,8 +263,8 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
       let(:command) { "echo hi" }
       let(:structure) do
         [
-          {name: :pane1, command: command},
-          {name: :runbook_pane, runbook_pane: true}
+          { name: :pane1, command: command },
+          { name: :runbook_pane, runbook_pane: true }
         ]
       end
 
@@ -276,7 +276,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
         layout_panes = subject._setup_layout(structure)
 
         expect(layout_panes).to eq(
-          {pane1: pane_2_id, runbook_pane: runbook_pane_id}
+          { pane1: pane_2_id, runbook_pane: runbook_pane_id }
         )
       end
     end

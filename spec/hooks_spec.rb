@@ -13,7 +13,7 @@ RSpec.describe Runbook::Hooks do
       subject.register_hook(name, type, klass, &block)
 
       expect(subject.hooks).to include(
-        {name: name, type: type, klass: klass, block: block}
+        { name: name, type: type, klass: klass, block: block }
       )
     end
 
@@ -108,7 +108,7 @@ RSpec.describe Runbook::Hooks do
     let(:position) { "0" }
     let(:start_at) { "0" }
     let(:metadata) {
-      {position: position, start_at: start_at}
+      { position: position, start_at: start_at }
     }
     let (:hook_1) {
       {

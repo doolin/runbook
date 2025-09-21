@@ -6,7 +6,7 @@ RSpec.describe Runbook::Util::StickyHash do
   let(:glue_val) { :val }
 
   it "shares glued state with clones" do
-    parent_hash = sticky_hash.merge({a: :b, c: glue})
+    parent_hash = sticky_hash.merge({ a: :b, c: glue })
     clone = parent_hash.dup
     clone[:a] = :e
     clone[:c] = :f
@@ -15,8 +15,8 @@ RSpec.describe Runbook::Util::StickyHash do
   end
 
   it "shares glued state with merge-created hashes" do
-    parent_hash = sticky_hash.merge({a: :b, c: glue})
-    merged = parent_hash.merge({something: :else})
+    parent_hash = sticky_hash.merge({ a: :b, c: glue })
+    merged = parent_hash.merge({ something: :else })
     merged[:a] = :e
     merged[:c] = :f
     expect(parent_hash[:a]).to eq(:b)

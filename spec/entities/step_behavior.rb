@@ -142,7 +142,7 @@ RSpec.shared_examples "has ssh_config behavior" do |entity_class|
   end
 
   describe "#env" do
-    let(:env) { {rails_env: "production"} }
+    let(:env) { { rails_env: "production" } }
 
     it "sets the remote environment for the entity" do
       entity.env(env)
@@ -169,18 +169,18 @@ RSpec.shared_examples "has ssh_config behavior" do |entity_class|
         path "/home"
         user "root"
         group "root"
-        env({path: "/usr/bin"})
+        env({ path: "/usr/bin" })
         umask "077"
       end
 
       expect(ssh_config).to eq(
         {
-          parallelization: {strategy: :sequence, limit: 2, wait: 5},
+          parallelization: { strategy: :sequence, limit: 2, wait: 5 },
           servers: ["s1.prod"],
           path: "/home",
           user: "root",
           group: "root",
-          env: {path: "/usr/bin"},
+          env: { path: "/usr/bin" },
           umask: "077"
         }
       )

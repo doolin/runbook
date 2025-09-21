@@ -2,13 +2,13 @@ require "spec_helper"
 
 RSpec.describe Runbook::Statements::Assert do
   let(:cmd) { "ps aux | grep [n]ginx" }
-  let(:cmd_ssh_config) { {servers: ["server.stg"], parallelization: {}} }
+  let(:cmd_ssh_config) { { servers: ["server.stg"], parallelization: {} } }
   let(:cmd_raw) { true }
   let(:interval) { 0.5 }
   let(:timeout) { 600 }
   let(:attempts) { 3 }
   let(:timeout_cmd) { %Q(mail -S "Error" me@me.com) }
-  let(:timeout_cmd_ssh_config) { {servers: [], parallelization: {}} }
+  let(:timeout_cmd_ssh_config) { { servers: [], parallelization: {} } }
   let(:timeout_cmd_raw) { true }
   let(:abort_statement) do
     Runbook::Statements::Command.new(timeout_cmd, ssh_config: timeout_cmd_ssh_config, raw: timeout_cmd_raw)

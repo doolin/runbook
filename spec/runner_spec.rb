@@ -456,7 +456,7 @@ Note: Run me last
     context "with layout_panes" do
       let(:my_layout) { [:runbook, :deploy] }
       let(:layout_panes) {
-        {:runbook => "%1", :deploy => "%3"}
+        { :runbook => "%1", :deploy => "%3" }
       }
       let(:book) do
         Runbook.book title do
@@ -978,7 +978,7 @@ OUTPUT
       end
 
       it "captures cmd" do
-        capture_opts = {strip: true, verbosity: Logger::INFO}
+        capture_opts = { strip: true, verbosity: Logger::INFO }
         capture_args = [:echo, "'hi!'", capture_opts]
         expect_any_instance_of(
           SSHKit::Backend::Abstract
@@ -1065,7 +1065,7 @@ OUTPUT
       end
 
       it "captures cmd on all hosts" do
-        capture_opts = {strip: true, verbosity: Logger::INFO}
+        capture_opts = { strip: true, verbosity: Logger::INFO }
         capture_args = [:echo, "$HOSTNAME", capture_opts]
         allow_any_instance_of(
           SSHKit::Backend::Abstract
@@ -1152,12 +1152,12 @@ OUTPUT
           note "Test me"
         end
 
-        section "My Section", :test, labels: {env: :prod} do
+        section "My Section", :test, labels: { env: :prod } do
           step "Skip me", :skip do
             note "I'm skipped"
           end
 
-          step :test, :skip, labels: {env: :stg} do
+          step :test, :skip, labels: { env: :stg } do
             note "hi"
           end
         end

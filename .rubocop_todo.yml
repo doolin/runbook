@@ -271,41 +271,6 @@ Layout/SpaceInsideBlockBraces:
     - 'spec/runner_spec.rb'
     - 'spec/support/factory.rb'
 
-# Offense count: 262
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceInsideHashLiteralBraces:
-  Exclude:
-    - 'examples/simple_runbook.rb'
-    - 'lib/hacks/ssh_kit.rb'
-    - 'lib/runbook/entities/book.rb'
-    - 'lib/runbook/helpers/ssh_kit_helper.rb'
-    - 'lib/runbook/run.rb'
-    - 'spec/entities/book_spec.rb'
-    - 'spec/entities/section_spec.rb'
-    - 'spec/entities/setup_spec.rb'
-    - 'spec/entities/step_behavior.rb'
-    - 'spec/entities/step_spec.rb'
-    - 'spec/entity_spec.rb'
-    - 'spec/helpers/ssh_kit_helper_spec.rb'
-    - 'spec/helpers/tmux_helper_spec.rb'
-    - 'spec/hooks_spec.rb'
-    - 'spec/run_spec.rb'
-    - 'spec/runbook_spec.rb'
-    - 'spec/runner_spec.rb'
-    - 'spec/runs/ssh_kit_spec.rb'
-    - 'spec/statements/assert_spec.rb'
-    - 'spec/statements/capture_all_spec.rb'
-    - 'spec/statements/capture_spec.rb'
-    - 'spec/statements/command_spec.rb'
-    - 'spec/statements/download_spec.rb'
-    - 'spec/statements/upload_spec.rb'
-    - 'spec/util/repo_spec.rb'
-    - 'spec/util/sticky_hash_spec.rb'
-    - 'spec/views/markdown_spec.rb'
-
 # Offense count: 13
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
@@ -460,7 +425,7 @@ Metrics/BlockLength:
 # Offense count: 2
 # Configuration parameters: CountComments, CountAsOne.
 Metrics/ClassLength:
-  Max: 242
+  Max: 244
 
 # Offense count: 5
 # Configuration parameters: AllowedMethods, AllowedPatterns.
@@ -1131,4 +1096,4 @@ Style/WordArray:
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns, SplitStrings.
 # URISchemes: http, https
 Layout/LineLength:
-  Max: 199
+  Max: 200

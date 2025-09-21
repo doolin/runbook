@@ -218,11 +218,11 @@ module Runbook
 
       def _step_choices(object, metadata)
         [
-          {key: "c", name: "Continue to execute this step", value: :continue},
-          {key: "s", name: "Skip this step", value: :skip},
-          {key: "j", name: "Jump to the specified position", value: :jump},
-          {key: "P", name: "Disable paranoid mode", value: :no_paranoid},
-          {key: "e", name: "Exit the runbook", value: :exit}
+          { key: "c", name: "Continue to execute this step", value: :continue },
+          { key: "s", name: "Skip this step", value: :skip },
+          { key: "j", name: "Jump to the specified position", value: :jump },
+          { key: "P", name: "Disable paranoid mode", value: :no_paranoid },
+          { key: "e", name: "Exit the runbook", value: :exit }
         ]
       end
 

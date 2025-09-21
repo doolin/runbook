@@ -34,7 +34,7 @@
       @group = nil
     end
 
-    execute_args = {verbosity: Logger::DEBUG}
+    execute_args = { verbosity: Logger::DEBUG }
     old_pty = ::SSHKit::Backend::Netssh.config.pty
     begin
       if Runbook.configuration.enable_sudo_prompt

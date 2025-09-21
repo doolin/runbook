@@ -108,7 +108,7 @@ module Runbook::Helpers
 
     def _as_block(user, group, &block)
       if user || group
-        -> { as({user: user, group: group}) { instance_exec(&block) } }
+        -> { as({ user: user, group: group }) { instance_exec(&block) } }
       else
         -> { instance_exec(&block) }
       end

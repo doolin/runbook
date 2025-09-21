@@ -13,7 +13,7 @@ RSpec.describe Runbook::Statements::Command do
       path: "/home/bobby_mcgee",
       user: "bobby_mcgee",
       group: "bobby_mcgee",
-      env: {rails_env: "production"},
+      env: { rails_env: "production" },
       umask: "077"
     }
   }

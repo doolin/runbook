@@ -14,7 +14,7 @@ RSpec.describe Runbook::Entities::Setup do
   end
 
   context "with labels" do
-    let(:labels) { {env: :staging} }
+    let(:labels) { { env: :staging } }
     let(:setup) { Runbook::Entities::Setup.new(labels: labels) }
 
     it "has labels" do

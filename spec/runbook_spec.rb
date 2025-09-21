@@ -3,7 +3,7 @@ require "spec_helper"
 RSpec.describe Runbook do
   let(:title) { "Some Title" }
   let(:tags) { [:mutator, :redhat] }
-  let(:labels) { {env: :prod, cloud_provider: :aws} }
+  let(:labels) { { env: :prod, cloud_provider: :aws } }
   let(:book) { Runbook.book(title) {} }
 
   it "has a version number" do

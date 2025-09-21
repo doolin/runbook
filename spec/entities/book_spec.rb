@@ -18,7 +18,7 @@ RSpec.describe Runbook::Entities::Book do
   end
 
   context "with labels" do
-    let(:labels) { {env: :staging} }
+    let(:labels) { { env: :staging } }
     let(:book) { Runbook::Entities::Book.new(title, labels: labels) }
 
     it "has labels" do
@@ -242,7 +242,7 @@ RSpec.describe Runbook::Entities::Book do
   end
 
   describe "#env" do
-    let(:env) { {rails_env: "production"} }
+    let(:env) { { rails_env: "production" } }
 
     it "sets the remote environment for the book" do
       book.env(env)
@@ -269,18 +269,18 @@ RSpec.describe Runbook::Entities::Book do
         path "/home"
         user "root"
         group "root"
-        env({path: "/usr/bin"})
+        env({ path: "/usr/bin" })
         umask "077"
       end
 
       expect(ssh_config).to eq(
         {
-          parallelization: {strategy: :sequence, limit: 2, wait: 5},
+          parallelization: { strategy: :sequence, limit: 2, wait: 5 },
           servers: ["s1.prod"],
           path: "/home",
           user: "root",
           group: "root",
-          env: {path: "/usr/bin"},
+          env: { path: "/usr/bin" },
           umask: "077"
         }
       )

@@ -4,7 +4,7 @@ RSpec.describe Runbook::Entity do
   let(:title) { "Some Title" }
   let(:parent) { Runbook::Entity.new("Parent") }
   let(:tags) { [:skip, :mutator] }
-  let(:labels) { {env: :prod, cloud_provider: :aws} }
+  let(:labels) { { env: :prod, cloud_provider: :aws } }
   let(:entity) { Runbook::Entity.new(title) }
 
   it "has a title" do

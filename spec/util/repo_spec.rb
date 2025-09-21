@@ -3,7 +3,7 @@ require "spec_helper"
 RSpec.describe Runbook::Util::Repo, type: :aruba do
   let(:toolbox) { Runbook::Toolbox.new }
   let(:book_title) { "My Amazing Runbook" }
-  let(:repo) { {some: :thing} }
+  let(:repo) { { some: :thing } }
   let(:metadata) {
     Runbook::Util::StickyHash.new.merge({
       toolbox: toolbox,
@@ -57,7 +57,7 @@ RSpec.describe Runbook::Util::Repo, type: :aruba do
   end
 
   describe "self.save_repo" do
-    let(:repo) { {flower: "daisy"} }
+    let(:repo) { { flower: "daisy" } }
 
     it "saves the repo" do
       Runbook::Util::Repo.save(repo, book_title: book_title)

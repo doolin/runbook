@@ -3,7 +3,7 @@ require "spec_helper"
 RSpec.describe Runbook::Statements::Download do
   let(:from) { "/root/my_file.txt" }
   let(:to) { "my_file.txt" }
-  let(:options) { {recursive: true} }
+  let(:options) { { recursive: true } }
   let(:ssh_config) {
     {
       servers: ["server1.prod"],

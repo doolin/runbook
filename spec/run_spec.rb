@@ -41,7 +41,7 @@ RSpec.describe "Runbook::Run" do
     end
 
     context "when position < start_at" do
-      let(:metadata_override) { {start_at: "1.10", position: "1.2"} }
+      let(:metadata_override) { { start_at: "1.10", position: "1.2" } }
 
       it "does not execute on the object" do
         expect(
@@ -53,7 +53,7 @@ RSpec.describe "Runbook::Run" do
     end
 
     context "when position == start_at" do
-      let(:metadata_override) { {start_at: "1.10", position: "1.10"} }
+      let(:metadata_override) { { start_at: "1.10", position: "1.10" } }
 
       it "executes on the object" do
         expect(
@@ -78,7 +78,7 @@ RSpec.describe "Runbook::Run" do
 
   describe "runbook__entities__section" do
     let (:object) { Runbook::Entities::Section.new("My Section") }
-    let(:metadata_override) { {position: "5"} }
+    let(:metadata_override) { { position: "5" } }
 
     it "outputs the section and position" do
       msg = "Section 5: My Section\n\n"
@@ -90,7 +90,7 @@ RSpec.describe "Runbook::Run" do
 
   describe "runbook__entities__section" do
     let (:object) { Runbook::Entities::Setup.new }
-    let(:metadata_override) { {position: "5"} }
+    let(:metadata_override) { { position: "5" } }
 
     it "outputs Setup" do
       msg = "Setup:\n\n"
@@ -102,7 +102,7 @@ RSpec.describe "Runbook::Run" do
 
   describe "runbook__entities__step" do
     let (:object) { Runbook::Entities::Step.new("My Step") }
-    let(:metadata_override) { {position: "1.1"} }
+    let(:metadata_override) { { position: "1.1" } }
 
     before(:each) do
       allow(toolbox).to receive(:expand).and_return(:continue)
@@ -116,7 +116,7 @@ RSpec.describe "Runbook::Run" do
     end
 
     context "when paranoid mode is true" do
-      let(:metadata_override) { {position: "1.1", paranoid: true} }
+      let(:metadata_override) { { position: "1.1", paranoid: true } }
 
       before(:each) do
         allow(toolbox).to receive(:output)
@@ -133,7 +133,7 @@ RSpec.describe "Runbook::Run" do
 
       context "when :skip" do
         context "when step is top level" do
-          let(:metadata_override) { {position: "1", paranoid: true} }
+          let(:metadata_override) { { position: "1", paranoid: true } }
           it "skips the step" do
             expect(toolbox).to receive(:expand).and_return(:skip)
             subject.execute(object, metadata)
@@ -142,7 +142,7 @@ RSpec.describe "Runbook::Run" do
         end
 
         context "when step is nested" do
-          let(:metadata_override) { {position: "1.2.1.2", paranoid: true} }
+          let(:metadata_override) { { position: "1.2.1.2", paranoid: true } }
           it "skips the step" do
             expect(toolbox).to receive(:expand).and_return(:skip)
             subject.execute(object, metadata)
@@ -205,7 +205,7 @@ RSpec.describe "Runbook::Run" do
       end
 
       context "when in noop mode" do
-        let(:metadata_override) { {noop: true} }
+        let(:metadata_override) { { noop: true } }
 
         it "does not prompt" do
           expect(toolbox).to_not receive(:expand)
@@ -214,7 +214,7 @@ RSpec.describe "Runbook::Run" do
       end
 
       context "when in auto mode" do
-        let(:metadata_override) { {auto: true} }
+        let(:metadata_override) { { auto: true } }
 
         it "does not prompt" do
           expect(toolbox).to_not receive(:expand)
@@ -223,7 +223,7 @@ RSpec.describe "Runbook::Run" do
       end
 
       context "when paranoid mode is disabled" do
-        let(:metadata_override) { {paranoid: false} }
+        let(:metadata_override) { { paranoid: false } }
 
         it "does not prompt" do
           expect(toolbox).to_not receive(:expand)
@@ -252,7 +252,7 @@ RSpec.describe "Runbook::Run" do
     end
 
     context "noop" do
-      let(:metadata_override) { {noop: true} }
+      let(:metadata_override) { { noop: true } }
 
       it "outputs the noop text for the ask statement" do
         msg = "[NOOP] Ask: #{prompt} (store in: #{into})"
@@ -305,7 +305,7 @@ RSpec.describe "Runbook::Run" do
     end
 
     context "auto" do
-      let(:metadata_override) { {auto: true} }
+      let(:metadata_override) { { auto: true } }
 
       it "raises an ExecutionError" do
         error_msg = "ERROR! Can't execute ask statement without default in automatic mode!"
@@ -419,7 +419,7 @@ RSpec.describe "Runbook::Run" do
     let (:object) { Runbook::Statements::Confirm.new(prompt) }
 
     context "noop" do
-      let(:metadata_override) { {noop: true} }
+      let(:metadata_override) { { noop: true } }
 
       it "outputs the noop text for the confirm statement" do
         msg = "[NOOP] Prompt: #{prompt}"
@@ -431,7 +431,7 @@ RSpec.describe "Runbook::Run" do
     end
 
     context "auto" do
-      let(:metadata_override) { {auto: true} }
+      let(:metadata_override) { { auto: true } }
 
       it "outputs auto text for the confirm statement" do
         skip_msg = "Skipping confirmation (auto): #{prompt}"
@@ -486,7 +486,7 @@ RSpec.describe "Runbook::Run" do
     let (:title) { "My Stellar Book Title" }
     let (:book) { Runbook::Entities::Book.new(title) }
     let (:object) { Runbook::Statements::Layout.new(layout) }
-    let (:layout_panes) { {:left => "%1" , :right => "%2"} }
+    let (:layout_panes) { { :left => "%1" , :right => "%2" } }
 
     before(:each) { book.add(object) }
 
@@ -495,7 +495,7 @@ RSpec.describe "Runbook::Run" do
     end
 
     context "noop" do
-      let(:metadata_override) { {noop: true} }
+      let(:metadata_override) { { noop: true } }
 
       it "outputs the noop text for the layout statement" do
         msg = "[NOOP] Layout: #{layout.inspect}"
@@ -601,7 +601,7 @@ RSpec.describe "Runbook::Run" do
     end
 
     context "noop" do
-      let(:metadata_override) { {noop: true} }
+      let(:metadata_override) { { noop: true } }
 
       it "outputs the noop text for the ruby command statement" do
         msg1 = "[NOOP] Run the following Ruby block:\n"
@@ -633,14 +633,14 @@ RSpec.describe "Runbook::Run" do
     let (:cmd) { "echo 'hi'" }
     let (:pane) { :pane1 }
     let (:pane_id) { "pane_id" }
-    let (:layout_panes) { {:pane1 => pane_id} }
-    let(:metadata_override) { {layout_panes: layout_panes} }
+    let (:layout_panes) { { :pane1 => pane_id } }
+    let(:metadata_override) { { layout_panes: layout_panes } }
     let (:object) do
       Runbook::Statements::TmuxCommand.new(cmd, pane)
     end
 
     context "noop" do
-      let(:metadata_override) { {noop: true} }
+      let(:metadata_override) { { noop: true } }
 
       it "outputs the noop text for the tmux command statement" do
         msg = "[NOOP] Run: `echo 'hi'` in pane pane1"
@@ -662,7 +662,7 @@ RSpec.describe "Runbook::Run" do
     let (:object) { Runbook::Statements::Wait.new(time) }
 
     context "noop" do
-      let(:metadata_override) { {noop: true} }
+      let(:metadata_override) { { noop: true } }
 
       it "outputs the noop text for the wait statement" do
         msg = "[NOOP] Sleep #{time} seconds"

@@ -50,7 +50,7 @@ RSpec.describe Runbook::Runs::SSHKit do
 
     context "with cmd_ssh_config set" do
       let(:cmd_ssh_config) do
-        {servers: ["host.stg"], parallelization: {}}
+        { servers: ["host.stg"], parallelization: {} }
       end
       let (:object) do
         Runbook::Statements::Assert.new(
@@ -77,7 +77,7 @@ RSpec.describe Runbook::Runs::SSHKit do
 
     context "with user and enable_sudo_prompt set" do
       let(:cmd_ssh_config) do
-        {servers: ["host.stg"], parallelization: {}, user: "root"}
+        { servers: ["host.stg"], parallelization: {}, user: "root" }
       end
       let (:object) do
         Runbook::Statements::Assert.new(
@@ -96,7 +96,7 @@ RSpec.describe Runbook::Runs::SSHKit do
         test_args = [:echo, "'hi'"]
         command_options = subject.ssh_kit_command_options(cmd_ssh_config)
         expect(subject).to receive(:ssh_kit_command_options).with(cmd_ssh_config).and_return(command_options)
-        test_options = {interaction_handler: command_options[:interaction_handler]}
+        test_options = { interaction_handler: command_options[:interaction_handler] }
         # Needed for sudo check
         expect_any_instance_of(SSHKit::Backend::Abstract).to receive(:execute).once
         expect_any_instance_of(
@@ -187,7 +187,7 @@ RSpec.describe Runbook::Runs::SSHKit do
 
         context "when timeout_cmd_ssh_config is set" do
           let (:abort_cmd_ssh_config) do
-            {servers: ["server01.stg"], parallelization: {}}
+            { servers: ["server01.stg"], parallelization: {} }
           end
           let (:abort_statement) { Runbook::Statements::Command.new(abort_cmd, ssh_config: abort_cmd_ssh_config) }
           let (:object) do
@@ -301,7 +301,7 @@ RSpec.describe Runbook::Runs::SSHKit do
     end
 
     context "noop" do
-      let(:metadata_override) { {noop: true} }
+      let(:metadata_override) { { noop: true } }
 
       it "outputs the noop text for the assert statement" do
         msg = "[NOOP] Assert: `#{cmd}` returns 0"
@@ -320,7 +320,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             user: "root",
             group: "root",
             path: "/home",
-            env: {rails_env: :production},
+            env: { rails_env: :production },
             umask: "077"
           }
         end
@@ -457,7 +457,7 @@ RSpec.describe Runbook::Runs::SSHKit do
 
     context "with ssh_config set" do
       let(:ssh_config) do
-        {servers: ["host.stg"], parallelization: {}}
+        { servers: ["host.stg"], parallelization: {} }
       end
       let (:object) do
         Runbook::Statements::Command.new(cmd, ssh_config: ssh_config)
@@ -478,7 +478,7 @@ RSpec.describe Runbook::Runs::SSHKit do
 
     context "with user and enable_sudo_prompt set" do
       let(:ssh_config) do
-        {servers: ["host.stg"], parallelization: {}, user: "root"}
+        { servers: ["host.stg"], parallelization: {}, user: "root" }
       end
       let (:object) do
         Runbook::Statements::Command.new(cmd, ssh_config: ssh_config)
@@ -494,7 +494,7 @@ RSpec.describe Runbook::Runs::SSHKit do
         exec_args = [:echo, "'hi'"]
         options = subject.ssh_kit_command_options(ssh_config)
         expect(subject).to receive(:ssh_kit_command_options).with(ssh_config).and_return(options)
-        exec_options = {interaction_handler: options[:interaction_handler]}
+        exec_options = { interaction_handler: options[:interaction_handler] }
         # Needed for sudo check
         expect_any_instance_of(SSHKit::Backend::Abstract).to receive(:execute).once
         expect_any_instance_of(
@@ -522,7 +522,7 @@ RSpec.describe Runbook::Runs::SSHKit do
     end
 
     context "noop" do
-      let(:metadata_override) { {noop: true} }
+      let(:metadata_override) { { noop: true } }
 
       it "outputs the noop text for the command statement" do
         msg = "[NOOP] Run: `#{cmd}`"
@@ -540,7 +540,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             user: "root",
             group: "root",
             path: "/home",
-            env: {rails_env: :production},
+            env: { rails_env: :production },
             umask: "077"
           }
         end
@@ -579,7 +579,7 @@ RSpec.describe Runbook::Runs::SSHKit do
     end
 
     it "captures cmd" do
-      capture_opts = {strip: true, verbosity: Logger::INFO}
+      capture_opts = { strip: true, verbosity: Logger::INFO }
       capture_args = [:echo, "'hi'", capture_opts]
       ssh_config = object.parent.ssh_config
       expect(
@@ -595,7 +595,7 @@ RSpec.describe Runbook::Runs::SSHKit do
 
     context "with ssh_config set" do
       let(:ssh_config) do
-        {servers: ["host.stg"], parallelization: {}}
+        { servers: ["host.stg"], parallelization: {} }
       end
       let (:object) do
         Runbook::Statements::Capture.new(
@@ -606,7 +606,7 @@ RSpec.describe Runbook::Runs::SSHKit do
       end
 
       it "uses the ssh_config" do
-        capture_opts = {strip: true, verbosity: Logger::INFO}
+        capture_opts = { strip: true, verbosity: Logger::INFO }
         capture_args = [:echo, "'hi'", capture_opts]
         expect(
           subject
@@ -621,7 +621,7 @@ RSpec.describe Runbook::Runs::SSHKit do
 
     context "with user and enable_sudo_prompt set" do
       let(:ssh_config) do
-        {servers: ["host.stg"], parallelization: {}, user: "root"}
+        { servers: ["host.stg"], parallelization: {}, user: "root" }
       end
       let (:object) do
         Runbook::Statements::Capture.new(
@@ -663,7 +663,7 @@ RSpec.describe Runbook::Runs::SSHKit do
       end
 
       it "executes the raw command string" do
-        capture_opts = {strip: true, verbosity: Logger::INFO}
+        capture_opts = { strip: true, verbosity: Logger::INFO }
         capture_args = ["echo 'hi'", capture_opts]
         expect_any_instance_of(
           SSHKit::Backend::Abstract
@@ -680,7 +680,7 @@ RSpec.describe Runbook::Runs::SSHKit do
       end
 
       it "executes the raw command string" do
-        capture_opts = {strip: false, verbosity: Logger::INFO}
+        capture_opts = { strip: false, verbosity: Logger::INFO }
         capture_args = [:echo, "'hi'", capture_opts]
         expect_any_instance_of(
           SSHKit::Backend::Abstract
@@ -691,7 +691,7 @@ RSpec.describe Runbook::Runs::SSHKit do
 
       context "with user and enable_sudo_prompt set" do
         let(:ssh_config) do
-          {servers: ["host.stg"], parallelization: {}, user: "root"}
+          { servers: ["host.stg"], parallelization: {}, user: "root" }
         end
         let (:object) do
           Runbook::Statements::Capture.new(
@@ -729,7 +729,7 @@ RSpec.describe Runbook::Runs::SSHKit do
     end
 
     context "noop" do
-      let(:metadata_override) { {noop: true} }
+      let(:metadata_override) { { noop: true } }
 
       it "outputs the noop text for the capture statement" do
         msg = "[NOOP] Capture: `#{cmd}` into #{into}"
@@ -747,7 +747,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             user: "root",
             group: "root",
             path: "/home",
-            env: {rails_env: :production},
+            env: { rails_env: :production },
             umask: "077"
           }
         end
@@ -780,7 +780,7 @@ RSpec.describe Runbook::Runs::SSHKit do
     let (:cmd) { "echo 'hi'" }
     let (:into) { :result }
     let(:cmd_result) { "hi" }
-    let(:capture_result) { {"localhost" => "hi"} }
+    let(:capture_result) { { "localhost" => "hi" } }
     let (:object) { Runbook::Statements::CaptureAll.new(cmd, into: into) }
 
     before(:each) do
@@ -788,7 +788,7 @@ RSpec.describe Runbook::Runs::SSHKit do
     end
 
     it "captures cmd" do
-      capture_opts = {strip: true, verbosity: Logger::INFO}
+      capture_opts = { strip: true, verbosity: Logger::INFO }
       capture_args = [:echo, "'hi'", capture_opts]
       ssh_config = object.parent.ssh_config
       expect(
@@ -804,7 +804,7 @@ RSpec.describe Runbook::Runs::SSHKit do
 
     context "with ssh_config set" do
       let(:ssh_config) do
-        {servers: ["host.stg"], parallelization: {}}
+        { servers: ["host.stg"], parallelization: {} }
       end
       let (:object) do
         Runbook::Statements::CaptureAll.new(
@@ -815,7 +815,7 @@ RSpec.describe Runbook::Runs::SSHKit do
       end
 
       it "uses the ssh_config" do
-        capture_opts = {strip: true, verbosity: Logger::INFO}
+        capture_opts = { strip: true, verbosity: Logger::INFO }
         capture_args = [:echo, "'hi'", capture_opts]
         expect(
           subject
@@ -830,7 +830,7 @@ RSpec.describe Runbook::Runs::SSHKit do
 
     context "with user and enable_sudo_prompt set" do
       let(:ssh_config) do
-        {servers: ["host.stg"], parallelization: {}, user: "root"}
+        { servers: ["host.stg"], parallelization: {}, user: "root" }
       end
       let (:object) do
         Runbook::Statements::CaptureAll.new(
@@ -872,7 +872,7 @@ RSpec.describe Runbook::Runs::SSHKit do
       end
 
       it "executes the raw command string" do
-        capture_opts = {strip: true, verbosity: Logger::INFO}
+        capture_opts = { strip: true, verbosity: Logger::INFO }
         capture_args = ["echo 'hi'", capture_opts]
         expect_any_instance_of(
           SSHKit::Backend::Abstract
@@ -889,7 +889,7 @@ RSpec.describe Runbook::Runs::SSHKit do
       end
 
       it "executes the raw command string" do
-        capture_opts = {strip: false, verbosity: Logger::INFO}
+        capture_opts = { strip: false, verbosity: Logger::INFO }
         capture_args = [:echo, "'hi'", capture_opts]
         expect_any_instance_of(
           SSHKit::Backend::Abstract
@@ -900,7 +900,7 @@ RSpec.describe Runbook::Runs::SSHKit do
 
       context "with user and enable_sudo_prompt set" do
         let(:ssh_config) do
-          {servers: ["host.stg"], parallelization: {}, user: "root"}
+          { servers: ["host.stg"], parallelization: {}, user: "root" }
         end
         let (:object) do
           Runbook::Statements::CaptureAll.new(
@@ -938,7 +938,7 @@ RSpec.describe Runbook::Runs::SSHKit do
     end
 
     context "noop" do
-      let(:metadata_override) { {noop: true} }
+      let(:metadata_override) { { noop: true } }
 
       it "outputs the noop text for the capture_all statement" do
         msg = "[NOOP] Capture: `#{cmd}` into #{into}"
@@ -956,7 +956,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             user: "root",
             group: "root",
             path: "/home",
-            env: {rails_env: :production},
+            env: { rails_env: :production },
             umask: "077"
           }
         end
@@ -988,7 +988,7 @@ RSpec.describe Runbook::Runs::SSHKit do
   describe "runbook__entities__download" do
     let (:from) { "/var/log/auth.log" }
     let (:to) { "auth.log" }
-    let(:options) { {log_percent: 25} }
+    let(:options) { { log_percent: 25 } }
     let(:download_args) { [from, to, options] }
     let (:object) {
       Runbook::Statements::Download.new(from, to: to, options: options)
@@ -1012,7 +1012,7 @@ RSpec.describe Runbook::Runs::SSHKit do
 
     context "with ssh_config set" do
       let(:ssh_config) do
-        {servers: ["host.stg"], parallelization: {}}
+        { servers: ["host.stg"], parallelization: {} }
       end
       let (:object) do
         Runbook::Statements::Download.new(
@@ -1036,7 +1036,7 @@ RSpec.describe Runbook::Runs::SSHKit do
     end
 
     context "noop" do
-      let(:metadata_override) { {noop: true} }
+      let(:metadata_override) { { noop: true } }
 
       it "outputs the noop text for the download statement" do
         msg = "[NOOP] Download: #{from} to #{to} with options #{options}"
@@ -1054,7 +1054,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             user: "root",
             group: "root",
             path: "/home",
-            env: {rails_env: :production},
+            env: { rails_env: :production },
             umask: "077"
           }
         end
@@ -1087,7 +1087,7 @@ RSpec.describe Runbook::Runs::SSHKit do
   describe "runbook__entities__upload" do
     let (:from) { "customer_list.txt" }
     let (:to) { "/home/bozo/customer_list.txt" }
-    let(:options) { {log_percent: 25} }
+    let(:options) { { log_percent: 25 } }
     let(:upload_args) { [from, to, options] }
     let (:object) {
       Runbook::Statements::Upload.new(from, to: to, options: options)
@@ -1111,7 +1111,7 @@ RSpec.describe Runbook::Runs::SSHKit do
 
     context "with ssh_config set" do
       let(:ssh_config) do
-        {servers: ["host.stg"], parallelization: {}}
+        { servers: ["host.stg"], parallelization: {} }
       end
       let (:object) do
         Runbook::Statements::Upload.new(
@@ -1135,7 +1135,7 @@ RSpec.describe Runbook::Runs::SSHKit do
     end
 
     context "noop" do
-      let(:metadata_override) { {noop: true} }
+      let(:metadata_override) { { noop: true } }
 
       it "outputs the noop text for the upload statement" do
         msg = "[NOOP] Upload: #{from} to #{to} with options #{options}"
@@ -1153,7 +1153,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             user: "root",
             group: "root",
             path: "/home",
-            env: {rails_env: :production},
+            env: { rails_env: :production },
             umask: "077"
           }
         end

@@ -19,7 +19,7 @@ RSpec.describe Runbook::Entities::Step do
   end
 
   context "with labels" do
-    let(:labels) { {env: :staging} }
+    let(:labels) { { env: :staging } }
     let(:step) { Runbook::Entities::Step.new(title, labels: labels) }
 
     it "has labels" do

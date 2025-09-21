@@ -22,7 +22,7 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
   end
 
   describe "ssh_kit_command_options" do
-    let(:ssh_config) { {user: "bob"} }
+    let(:ssh_config) { { user: "bob" } }
 
     before(:each) do
       allow(
@@ -138,7 +138,7 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
 
   describe "with_ssh_config" do
     let(:servers) { [] }
-    let(:parallelization) { {strategy: :parallel} }
+    let(:parallelization) { { strategy: :parallel } }
     let(:additional_config) { {} }
     let(:ssh_config) do
       {
@@ -185,7 +185,7 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
 
     context "coordinator options" do
       context "when :sequence strategy is passed" do
-        let(:parallelization) { {strategy: :sequence} }
+        let(:parallelization) { { strategy: :sequence } }
 
         it "passes the strategy to the coordinator's each method" do
           each_args = [in: :sequence]
@@ -198,7 +198,7 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
       end
 
       context "when :wait attribute is passed" do
-        let(:parallelization) { {strategy: :sequence, wait: 1} }
+        let(:parallelization) { { strategy: :sequence, wait: 1 } }
 
         it "passes the wait attribute to the coordinator's each method" do
           each_args = [in: :sequence, wait: 1]
@@ -211,7 +211,7 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
       end
 
       context "when :limit and :wait attributes are passed" do
-        let(:parallelization) { {strategy: :groups, limit: 2, wait: 1} }
+        let(:parallelization) { { strategy: :groups, limit: 2, wait: 1 } }
 
         it "passes limit and wait attributes to coordinator's each method" do
           each_args = [in: :groups, limit: 2, wait: 1]
@@ -243,7 +243,7 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
       end
 
       context "with user specified" do
-        let(:additional_config) { {user: "root"} }
+        let(:additional_config) { { user: "root" } }
 
         it "passes the user to the coordinator" do
           as_args = [user: "root", group: nil]
@@ -256,7 +256,7 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
       end
 
       context "with user and group specified" do
-        let(:additional_config) { {user: "root", group: "root"} }
+        let(:additional_config) { { user: "root", group: "root" } }
 
         it "passes the user and group to the coordinator" do
           as_args = [user: "root", group: "root"]
@@ -271,7 +271,7 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
 
     context "with environment" do
       context "with env specified" do
-        let(:additional_config) { {env: {rails_env: "test"}} }
+        let(:additional_config) { { env: { rails_env: "test" } } }
 
         it "passes the user to the coordinator" do
           with_args = [rails_env: "test"]
@@ -286,7 +286,7 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
 
     context "with path" do
       context "with path specified" do
-        let(:additional_config) { {path: "/home/"} }
+        let(:additional_config) { { path: "/home/" } }
 
         it "passes the path to the coordinator" do
           within_args = ["/home/"]
@@ -301,7 +301,7 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
 
     context "with umask" do
       let(:umask) { "077" }
-      let(:additional_config) { {umask: umask} }
+      let(:additional_config) { { umask: umask } }
 
       it "temporarily sets the umask" do
         old_umask = SSHKit.config.umask

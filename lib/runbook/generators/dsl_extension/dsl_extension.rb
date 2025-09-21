@@ -21,7 +21,7 @@ module Runbook::Generators
     def create_dsl_extension
       target = File.join(
         parent_options[:root],
-        "#{name.underscore}.rb",
+        "#{name.underscore}.rb"
       )
       template('templates/dsl_extension.tt', target)
     end

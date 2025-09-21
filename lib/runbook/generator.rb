@@ -26,7 +26,7 @@ module Runbook
           aliases: co.aliases,
           type: co.type,
           banner: co.banner,
-          hide: co.hide,
+          hide: co.hide
         )
       end
 

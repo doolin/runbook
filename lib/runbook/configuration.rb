@@ -94,7 +94,7 @@ module Runbook
         $stdout,
         banner: nil,
         command_output: true,
-        context: AirbrusshContext,
+        context: AirbrusshContext
       )
       ssh_kit.output = formatter
       self._airbrussh_context = formatter.formatters.find do |fmt|

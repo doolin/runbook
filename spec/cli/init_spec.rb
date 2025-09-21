@@ -13,7 +13,7 @@ RSpec.describe "runbook init", type: :aruba do
       "Add runbooks to the `runbooks` directory.",
       "Add shared code to `lib/runbook`.",
       "Execute runbooks using `bundle exec runbook exec <RUNBOOK_PATH>",
-      "from your project root.",
+      "from your project root."
     ]
   }
 

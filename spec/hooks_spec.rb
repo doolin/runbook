@@ -45,7 +45,7 @@ RSpec.describe Runbook::Hooks do
         name: :hook_1,
         type: :before,
         klass: Runbook::Entities::Book,
-        block: block,
+        block: block
       }
     }
     let (:hook_2) {
@@ -53,7 +53,7 @@ RSpec.describe Runbook::Hooks do
         name: :hook_2,
         type: :before,
         klass: Runbook::Entity,
-        block: block,
+        block: block
       }
     }
     let (:hook_3) {
@@ -61,7 +61,7 @@ RSpec.describe Runbook::Hooks do
         name: :hook_3,
         type: :around,
         klass: Runbook::Statements::Note,
-        block: block,
+        block: block
       }
     }
     let (:hook_4) {
@@ -69,7 +69,7 @@ RSpec.describe Runbook::Hooks do
         name: :hook_4,
         type: :after,
         klass: Runbook::Statement,
-        block: block,
+        block: block
       }
     }
     let(:hooks) { [hook_1, hook_2, hook_3, hook_4] }
@@ -117,7 +117,7 @@ RSpec.describe Runbook::Hooks do
         klass: object.class,
         block: Proc.new { |object, metadata|
           result << "before hook_1"
-        },
+        }
       }
     }
     let (:hook_2) {
@@ -127,7 +127,7 @@ RSpec.describe Runbook::Hooks do
         klass: object.class,
         block: Proc.new { |object, metadata|
           result << "before hook_2"
-        },
+        }
       }
     }
     let (:hook_3) {
@@ -139,7 +139,7 @@ RSpec.describe Runbook::Hooks do
           result << "around before hook_3"
           block.call(object, metadata)
           result << "around after hook_3"
-        },
+        }
       }
     }
     let (:hook_4) {
@@ -152,7 +152,7 @@ RSpec.describe Runbook::Hooks do
           block.call(object, metadata)
           result << "around after hook_4"
 
-        },
+        }
       }
     }
     let (:hook_5) {
@@ -162,7 +162,7 @@ RSpec.describe Runbook::Hooks do
         klass: object.class,
         block: Proc.new { |object, metadata|
           result << "after hook_5"
-        },
+        }
       }
     }
     let (:hook_6) {
@@ -172,7 +172,7 @@ RSpec.describe Runbook::Hooks do
         klass: object.class,
         block: Proc.new { |object, metadata|
           result << "after hook_6"
-        },
+        }
       }
     }
     let(:hooks) {
@@ -198,7 +198,7 @@ RSpec.describe Runbook::Hooks do
         "around after hook_4",
         "around after hook_3",
         "after hook_5",
-        "after hook_6",
+        "after hook_6"
       ]
 
       object.invoke_with_hooks(subject, object, metadata) do
@@ -231,7 +231,7 @@ RSpec.describe Runbook::Hooks do
         expected_result = [
           "book method invoked",
           "after hook_5",
-          "after hook_6",
+          "after hook_6"
         ]
 
         object.invoke_with_hooks(subject, object, metadata) do

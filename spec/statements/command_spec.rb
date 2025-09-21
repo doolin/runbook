@@ -8,13 +8,13 @@ RSpec.describe Runbook::Statements::Command do
       parallelization: {
         strategy: :groups,
         limit: 2,
-        wait: 2,
+        wait: 2
       },
       path: "/home/bobby_mcgee",
       user: "bobby_mcgee",
       group: "bobby_mcgee",
       env: {rails_env: "production"},
-      umask: "077",
+      umask: "077"
     }
   }
   let(:raw) { true }
@@ -24,7 +24,7 @@ RSpec.describe Runbook::Statements::Command do
     Runbook::Statements::Command.new(
       cmd,
       ssh_config: ssh_config,
-      raw: raw,
+      raw: raw
     ).tap { |cmd| cmd.parent = parent }
   }
   let(:toolbox) { instance_double("Runbook::Toolbox") }
@@ -42,7 +42,7 @@ RSpec.describe Runbook::Statements::Command do
       position: "",
       reverse: Runbook::Util::Glue.new(false),
       reversed: Runbook::Util::Glue.new(false),
-      book_title: "My Book",
+      book_title: "My Book"
     }
   }
 

@@ -8,7 +8,7 @@ RSpec.describe Runbook::Util::StoredPose, type: :aruba do
     Runbook::Util::StickyHash.new.merge({
       toolbox: toolbox,
       book_title: book_title,
-      position: current_pose,
+      position: current_pose
     })
   }
   let(:file) {

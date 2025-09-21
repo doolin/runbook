@@ -4,7 +4,7 @@ module Runbook::Extensions
       def setup(*tags, labels: {}, &block)
         Runbook::Entities::Setup.new(
           tags: tags,
-          labels: labels,
+          labels: labels
         ).tap do |setup|
           parent.add(setup)
           setup.dsl.instance_eval(&block) if block

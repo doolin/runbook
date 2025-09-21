@@ -45,7 +45,7 @@ module Runbook::Generators
     def remove_unneeded_files
       dirs = [
         parent_options[:root],
-        _name,
+        _name
       ]
 
       gemspec_file = File.join(*dirs, "#{_name}.gemspec")
@@ -69,7 +69,7 @@ module Runbook::Generators
       version_file_path = [
         "lib",
         _name,
-        "version.rb",
+        "version.rb"
       ]
       version_file = File.join(*dirs, *version_file_path)
       remove_file(version_file)
@@ -80,7 +80,7 @@ module Runbook::Generators
         "Where should shared runbook code live?",
         "Use `lib/#{_name}` for runbook-only projects",
         "Use `lib/#{_name}/runbook` for projects used for non-runbook tasks",
-        "Shared runbook code path:",
+        "Shared runbook code path:"
       ]
 
       if options.has_key?("shared-lib-dir")
@@ -94,7 +94,7 @@ module Runbook::Generators
       target = File.join(
         parent_options[:root],
         _name,
-        "README.md",
+        "README.md"
       )
 
       template("templates/README.md.tt", target)
@@ -104,7 +104,7 @@ module Runbook::Generators
       target = File.join(
         parent_options[:root],
         _name,
-        "Gemfile",
+        "Gemfile"
       )
 
       template("templates/Gemfile.tt", target)
@@ -136,7 +136,7 @@ module Runbook::Generators
         parent_options[:root],
         _name,
         "lib",
-        "#{_name}.rb",
+        "#{_name}.rb"
       )
 
       template("templates/base_file.rb.tt", target)
@@ -146,7 +146,7 @@ module Runbook::Generators
       target = File.join(
         parent_options[:root],
         _name,
-        "Rakefile",
+        "Rakefile"
       )
 
       gsub_file(target, /^require "bundler\/gem_tasks"\n/, "", verbose: false)
@@ -156,7 +156,7 @@ module Runbook::Generators
       target = File.join(
         parent_options[:root],
         _name,
-        ".ruby-version",
+        ".ruby-version"
       )
 
       create_file(target, "ruby-#{RUBY_VERSION}\n")
@@ -166,7 +166,7 @@ module Runbook::Generators
       target = File.join(
         parent_options[:root],
         _name,
-        ".ruby-gemset",
+        ".ruby-gemset"
       )
 
       create_file(target, "#{_name}\n")
@@ -176,7 +176,7 @@ module Runbook::Generators
       target = File.join(
         parent_options[:root],
         _name,
-        "Runbookfile",
+        "Runbookfile"
       )
 
       template("templates/Runbookfile.tt", target)
@@ -186,7 +186,7 @@ module Runbook::Generators
       dirs = [
         parent_options[:root],
         _name,
-        "runbooks",
+        "runbooks"
       ]
       target = File.join(*dirs)
 
@@ -200,7 +200,7 @@ module Runbook::Generators
         _name,
         "lib",
         "runbook",
-        "extensions",
+        "extensions"
       ]
       target = File.join(*dirs)
 
@@ -214,7 +214,7 @@ module Runbook::Generators
         _name,
         "lib",
         "runbook",
-        "generators",
+        "generators"
       ]
       target = File.join(*dirs)
 
@@ -226,7 +226,7 @@ module Runbook::Generators
       dirs = [
         parent_options[:root],
         _name,
-        @shared_lib_dir,
+        @shared_lib_dir
       ]
       target = File.join(*dirs)
 
@@ -239,7 +239,7 @@ module Runbook::Generators
         parent_options[:root],
         _name,
         "bin",
-        "console",
+        "console"
       ]
       target = File.join(*path)
 
@@ -256,7 +256,7 @@ module Runbook::Generators
     def remove_bad_test
       path = [
         parent_options[:root],
-        _name,
+        _name
       ]
 
       case options["test"]
@@ -284,7 +284,7 @@ module Runbook::Generators
         "Add shared code to `#{@shared_lib_dir}`.",
         "Execute runbooks using `bundle exec runbook exec <RUNBOOK_PATH>` from your project root.",
         "See the README.md for more details.",
-        "\n",
+        "\n"
       ]
 
       say(msg.join("\n"))

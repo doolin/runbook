@@ -22,7 +22,7 @@ RSpec.describe "Runbook::Run" do
       parent: nil,
       position: position,
       reverse: reverse,
-      reversed: reversed,
+      reversed: reversed
     }.merge(metadata_override)
   }
 

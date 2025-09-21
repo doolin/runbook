@@ -3,7 +3,7 @@ module Runbook::Extensions
     def self.blank_ssh_config
       {
         servers: [],
-        parallelization: {},
+        parallelization: {}
       }
     end
 
@@ -18,7 +18,7 @@ module Runbook::Extensions
           prepend Runbook::Extensions::SSHConfig
         end.new
         dsl_class = Runbook::DSL.class(
-          Runbook::Extensions::SSHConfig::DSL,
+          Runbook::Extensions::SSHConfig::DSL
         )
         config.instance_variable_set(:@dsl, dsl_class.new(config))
         config.dsl.instance_eval(&block)
@@ -29,7 +29,7 @@ module Runbook::Extensions
         parent.ssh_config[:parallelization] = {
           strategy: strategy,
           limit: limit,
-          wait: wait,
+          wait: wait
         }
       end
 

@@ -33,7 +33,7 @@ module Runbook::Util
       base.register_hook(
         :save_pose_hook,
         :before,
-        Object,
+        Object
       ) do |object, metadata|
         position = metadata[:position]
         title = metadata[:book_title]
@@ -45,7 +45,7 @@ module Runbook::Util
       base.register_hook(
         :delete_stored_pose_hook,
         :after,
-        Runbook::Entities::Book,
+        Runbook::Entities::Book
       ) do |object, metadata|
         title = metadata[:book_title]
         Runbook::Util::StoredPose.delete(title)

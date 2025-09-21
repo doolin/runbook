@@ -10,7 +10,7 @@ module Runbook::Extensions
         Runbook::Entities::Step.new(
           title,
           tags: tags,
-          labels: labels,
+          labels: labels
         ).tap do |step|
           parent.add(step)
           step.dsl.instance_eval(&block) if block

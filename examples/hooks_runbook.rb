@@ -37,7 +37,7 @@ This is a runbook for playing with runbook hooks
 
   layout [[
     :runbook,
-    :bottom,
+    :bottom
   ]]
 
   section "Hook" do

@@ -6,7 +6,7 @@ RSpec.describe Runbook::Toolbox do
   let(:msg) { "Something I want to say" }
   let(:default) { "default" }
   let(:choices) { [
-    { key: "y", name: "Yes", value: true },
+    { key: "y", name: "Yes", value: true }
   ] }
 
   before(:each) do

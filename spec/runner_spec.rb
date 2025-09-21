@@ -41,7 +41,7 @@ This is a very elaborate runbook that does stuff
   it "defaults to run in paranoid mode" do
     expect(book).to receive(:run).with(
       Runbook::Runs::SSHKit,
-      hash_including(paranoid: true),
+      hash_including(paranoid: true)
     )
     runner.run
   end
@@ -1169,7 +1169,7 @@ OUTPUT
         "Runbook::Entities::Setup: Setup [:test] {}",
         "Runbook::Entities::Section: My Section [:test] {env: :prod}",
         "Runbook::Entities::Step: Skip me [:skip] {}",
-        "Runbook::Entities::Step:  [:test, :skip] {env: :stg}",
+        "Runbook::Entities::Step:  [:test, :skip] {env: :stg}"
       ]
     end
 
@@ -1187,7 +1187,7 @@ OUTPUT
         run_module.register_hook(
           hook_name,
           :before,
-          Runbook::Entity,
+          Runbook::Entity
         ) do |object, metadata|
           labels_str = if object.labels.empty?
             "{}"

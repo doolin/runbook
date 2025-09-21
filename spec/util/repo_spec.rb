@@ -8,7 +8,7 @@ RSpec.describe Runbook::Util::Repo, type: :aruba do
     Runbook::Util::StickyHash.new.merge({
       toolbox: toolbox,
       book_title: book_title,
-      repo: Runbook::Util::Glue.new(repo),
+      repo: Runbook::Util::Glue.new(repo)
     })
   }
   let(:file) {

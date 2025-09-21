@@ -9,7 +9,7 @@ module Runbook
         name: name,
         type: type,
         klass: klass,
-        block: block,
+        block: block
       }
 
       if before

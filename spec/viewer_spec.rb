@@ -106,7 +106,7 @@ MARKDOWN
           "appserver05.prod",
           "appserver06.prod",
           "appserver07.prod",
-          "appserver08.prod",
+          "appserver08.prod"
         ]
 
         let(:book) do

@@ -83,7 +83,7 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
     end
     let(:output_lines) {
       [
-        /#{@cid[0..11]}/,
+        /#{@cid[0..11]}/
       ]
     }
 
@@ -116,7 +116,7 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
       end
       let(:output_lines) {
         [
-          / #{echo_output}$/,
+          / #{echo_output}$/
         ]
       }
 
@@ -149,7 +149,7 @@ RSpec.describe "runbook sshkit integration", type: :aruba do
       end
       let(:output_lines) {
         [
-          /600/,
+          /600/
         ]
       }
 

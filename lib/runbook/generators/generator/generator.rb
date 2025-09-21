@@ -17,7 +17,7 @@ module Runbook::Generators
     def create_generator_directory
       target = File.join(
         parent_options[:root],
-        name.underscore,
+        name.underscore
       )
       empty_directory(target)
     end
@@ -26,7 +26,7 @@ module Runbook::Generators
       target = File.join(
         parent_options[:root],
         name.underscore,
-        "templates",
+        "templates"
       )
       empty_directory(target)
     end
@@ -35,7 +35,7 @@ module Runbook::Generators
       target = File.join(
         parent_options[:root],
         name.underscore,
-        "#{name.underscore}.rb",
+        "#{name.underscore}.rb"
       )
       template('templates/generator.tt', target)
     end

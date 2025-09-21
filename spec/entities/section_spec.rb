@@ -123,7 +123,7 @@ RSpec.describe Runbook::Entities::Section do
     it "sets the parallelization strategy for the section" do
       section.parallelization(strategy: strategy)
       expect(section.ssh_config[:parallelization]).to include(
-        strategy: strategy,
+        strategy: strategy
       )
     end
 
@@ -131,7 +131,7 @@ RSpec.describe Runbook::Entities::Section do
       section.parallelization(strategy: :groups, limit: limit)
       expect(section.ssh_config[:parallelization]).to include(
         strategy: :groups,
-        limit: limit,
+        limit: limit
       )
     end
 
@@ -139,7 +139,7 @@ RSpec.describe Runbook::Entities::Section do
       section.parallelization(strategy: :sequence, wait: wait)
       expect(section.ssh_config[:parallelization]).to include(
         strategy: :sequence,
-        wait: wait,
+        wait: wait
       )
     end
   end
@@ -248,7 +248,7 @@ RSpec.describe Runbook::Entities::Section do
           user: "root",
           group: "root",
           env: {path: "/usr/bin"},
-          umask: "077",
+          umask: "077"
         }
       )
     end

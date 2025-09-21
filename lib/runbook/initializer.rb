@@ -5,7 +5,7 @@ module Runbook
     source_root File.join(
       File.dirname(__FILE__),
       "generators",
-      "project",
+      "project"
     )
 
     add_runtime_options!
@@ -14,7 +14,7 @@ module Runbook
     def create_runbookfile
       template(
         "templates/Runbookfile.tt",
-        "Runbookfile",
+        "Runbookfile"
       )
     end
 
@@ -27,7 +27,7 @@ module Runbook
     def create_lib_directory
       dirs = [
         "lib",
-        "runbook",
+        "runbook"
       ]
       target = File.join(*dirs)
 
@@ -39,7 +39,7 @@ module Runbook
       dirs = [
         "lib",
         "runbook",
-        "extensions",
+        "extensions"
       ]
       target = File.join(*dirs)
 
@@ -51,7 +51,7 @@ module Runbook
       dirs = [
         "lib",
         "runbook",
-        "generators",
+        "generators"
       ]
       target = File.join(*dirs)
 
@@ -67,7 +67,7 @@ module Runbook
         "Add shared code to `lib/runbook`.",
         "Execute runbooks using `bundle exec runbook exec <RUNBOOK_PATH>`",
         "from your project root.",
-        "\n",
+        "\n"
       ]
 
       say(msg.join("\n"))
@@ -78,7 +78,7 @@ module Runbook
     def _keep_dir(dir)
       create_file(
         File.join(dir, ".keep"),
-        verbose: false,
+        verbose: false
       )
     end
   end

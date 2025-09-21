@@ -21,7 +21,7 @@ RSpec.describe Runbook::Statements::Assert do
       interval: interval,
       timeout: timeout,
       attempts: attempts,
-      abort_statement: abort_statement,
+      abort_statement: abort_statement
     )
   end
 

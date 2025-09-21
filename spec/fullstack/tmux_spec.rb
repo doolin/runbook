@@ -55,7 +55,7 @@ RSpec.describe "runbook tmux integration", type: :aruba do
 
     let(:output_lines) {
       [
-        /Note: file touched/,
+        /Note: file touched/
       ]
     }
 

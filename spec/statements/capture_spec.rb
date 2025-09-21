@@ -9,13 +9,13 @@ RSpec.describe Runbook::Statements::Capture do
       parallelization: {
         strategy: :groups,
         limit: 2,
-        wait: 2,
+        wait: 2
       },
       path: "/home/bobby_mcgee",
       user: "bobby_mcgee",
       group: "bobby_mcgee",
       env: {rails_env: "production"},
-      umask: "077",
+      umask: "077"
     }
   }
   let(:raw) { true }
@@ -26,7 +26,7 @@ RSpec.describe Runbook::Statements::Capture do
       into: into,
       ssh_config: ssh_config,
       raw: raw,
-      strip: strip,
+      strip: strip
     )
   }
 

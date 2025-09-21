@@ -9,7 +9,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
     :_split,
     :_swap_panes,
     :_remove_stale_layouts,
-    :_kill_pane,
+    :_kill_pane
   ]
 
   describe "setup_layout" do
@@ -108,7 +108,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
       "my Runbook title",
       "my/Runbook/title",
       "OTHER Runbook TITLE",
-      "some      Runbook TITLE",
+      "some      Runbook TITLE"
     ] }
 
     let(:outputs) { [
@@ -116,7 +116,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
       "my-runbook-title",
       "my-runbook-title",
       "other-runbook-title",
-      "some-runbook-title",
+      "some-runbook-title"
     ] }
 
     it "returns a slugified version of its argument" do
@@ -131,13 +131,13 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
     let(:fresh_session_layout_files) do
       [
         "/tmp/runbook_layout_25996_pair_2716_%1_example-layout-book.yml",
-        "/tmp/runbook_layout_25996_pair_2716_%4_example-layout-book.yml",
+        "/tmp/runbook_layout_25996_pair_2716_%4_example-layout-book.yml"
       ]
     end
     let(:stale_session_layout_files) do
       [
         "/tmp/runbook_layout_25996_pair_2716_%14_example-layout-book.yml",
-        "/tmp/runbook_layout_25996_pair_2716_%44_example-layout-book.yml",
+        "/tmp/runbook_layout_25996_pair_2716_%44_example-layout-book.yml"
       ]
     end
     let(:session_layout_files) do
@@ -191,7 +191,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
           name: name,
           directory: directory,
           command: command,
-          runbook_pane: true,
+          runbook_pane: true
         }]
       end
 
@@ -264,7 +264,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
       let(:structure) do
         [
           {name: :pane1, command: command},
-          {name: :runbook_pane, runbook_pane: true},
+          {name: :runbook_pane, runbook_pane: true}
         ]
       end
 
@@ -287,7 +287,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
         [[
           {
             :pane1 => 1,
-            :pane2 => 3,
+            :pane2 => 3
           }
         ]]
       end
@@ -303,7 +303,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
       let(:window_name) { :window1 }
       let(:structure) do
         {
-          window_name => [:pane1, :pane2],
+          window_name => [:pane1, :pane2]
         }
       end
 
@@ -321,7 +321,7 @@ RSpec.describe Runbook::Helpers::TmuxHelper do
       let(:structure) do
         {
           window_1 => [:pane],
-          window_2 => [:left, :right],
+          window_2 => [:left, :right]
         }
       end
 

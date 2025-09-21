@@ -421,7 +421,7 @@ RSpec.describe "runbook generate", type: :aruba do
             "Add runbooks to the `runbooks` directory.",
             "Add shared code to `lib/my_runbooks`.",
             "Execute runbooks using `bundle exec runbook exec <RUNBOOK_PATH>` from your project root.",
-            "See the README.md for more details.",
+            "See the README.md for more details."
           ]
 
           expect(last_cmd).to have_output(/#{bundle_gem_output}/)
@@ -479,7 +479,7 @@ RSpec.describe "runbook generate", type: :aruba do
             "Add runbooks to the `runbooks` directory.",
             "Add shared code to `lib/my_runbooks`.",
             "Execute runbooks using `bundle exec runbook exec <RUNBOOK_PATH>` from your project root.",
-            "See the README.md for more details.",
+            "See the README.md for more details."
           ]
 
           expect(last_cmd).to have_output(/#{bundle_gem_output}/)
@@ -533,7 +533,7 @@ RSpec.describe "runbook generate", type: :aruba do
             "Add runbooks to the `runbooks` directory.",
             "Add shared code to `lib/my_runbooks`.",
             "Execute runbooks using `bundle exec runbook exec <RUNBOOK_PATH>` from your project root.",
-            "See the README.md for more details.",
+            "See the README.md for more details."
           ]
 
           expect(last_cmd).to have_output(/#{bundle_gem_output}/)

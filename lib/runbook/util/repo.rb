@@ -35,7 +35,7 @@ module Runbook::Util
       base.register_hook(
         :save_repo_hook,
         :after,
-        Object,
+        Object
       ) do |object, metadata|
         repo = metadata[:repo]
         title = metadata[:book_title]
@@ -47,7 +47,7 @@ module Runbook::Util
       base.register_hook(
         :delete_stored_repo_hook,
         :after,
-        Runbook::Entities::Book,
+        Runbook::Entities::Book
       ) do |object, metadata|
         title = metadata[:book_title]
         Runbook::Util::Repo.delete(title)

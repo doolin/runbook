@@ -179,7 +179,7 @@ module Runbook
           width: 60,
           head: ">",
           incomplete: yellow,
-          complete: green,
+          complete: green
         )
         progress_bar.start
         time.times do
@@ -222,7 +222,7 @@ module Runbook
           {key: "s", name: "Skip this step", value: :skip},
           {key: "j", name: "Jump to the specified position", value: :jump},
           {key: "P", name: "Disable paranoid mode", value: :no_paranoid},
-          {key: "e", name: "Exit the runbook", value: :exit},
+          {key: "e", name: "Exit the runbook", value: :exit}
         ]
       end
 
@@ -256,7 +256,7 @@ module Runbook
       base.register_hook(
         :kill_all_panes_after_book,
         :after,
-        Runbook::Entities::Book,
+        Runbook::Entities::Book
       ) do |object, metadata|
         next if metadata[:noop] || metadata[:layout_panes].none? || metadata[:keep_panes]
         if metadata[:auto]
@@ -276,7 +276,7 @@ module Runbook
       base.register_hook(
         :add_additional_step_whitespace_hook,
         :after,
-        Runbook::Statement,
+        Runbook::Statement
       ) do |object, metadata|
         if object.parent.is_a?(Runbook::Entities::Step) ||
             object.parent.is_a?(Runbook::Entities::Setup)

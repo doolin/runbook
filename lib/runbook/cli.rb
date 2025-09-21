@@ -23,7 +23,7 @@ module Runbook
     def view(runbook)
       runbook = _retrieve_runbook(runbook, :view)
       puts Runbook::Viewer.new(runbook).generate(
-        view: options[:view],
+        view: options[:view]
       )
     end
 
@@ -61,7 +61,7 @@ module Runbook
         noop: options[:noop],
         auto: options[:auto],
         paranoid: options[:"no-paranoid"] == nil,
-        start_at: options[:start_at],
+        start_at: options[:start_at]
       )
     end
 

@@ -15,7 +15,7 @@ RSpec.describe Runbook::Runs::SSHKit do
       index: 2,
       position: "3.3",
       book_title: "My Book Title",
-      repo: {},
+      repo: {}
     }.merge(metadata_override)
   }
 
@@ -194,7 +194,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             Runbook::Statements::Assert.new(
               cmd,
               timeout: timeout,
-              abort_statement: abort_statement,
+              abort_statement: abort_statement
             )
           end
 
@@ -221,7 +221,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             Runbook::Statements::Assert.new(
               cmd,
               timeout: timeout,
-              abort_statement: abort_statement,
+              abort_statement: abort_statement
             )
           end
 
@@ -321,7 +321,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             group: "root",
             path: "/home",
             env: {rails_env: :production},
-            umask: "077",
+            umask: "077"
           }
         end
         let (:object) do
@@ -371,7 +371,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             Runbook::Statements::Assert.new(
               cmd,
               timeout: timeout,
-              abort_statement: abort_statement,
+              abort_statement: abort_statement
             )
           end
 
@@ -541,7 +541,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             group: "root",
             path: "/home",
             env: {rails_env: :production},
-            umask: "077",
+            umask: "077"
           }
         end
         let (:object) do
@@ -601,7 +601,7 @@ RSpec.describe Runbook::Runs::SSHKit do
         Runbook::Statements::Capture.new(
           cmd,
           into: into,
-          ssh_config: ssh_config,
+          ssh_config: ssh_config
         )
       end
 
@@ -627,7 +627,7 @@ RSpec.describe Runbook::Runs::SSHKit do
         Runbook::Statements::Capture.new(
           cmd,
           into: into,
-          ssh_config: ssh_config,
+          ssh_config: ssh_config
         )
       end
 
@@ -644,7 +644,7 @@ RSpec.describe Runbook::Runs::SSHKit do
         capture_options = {
           interaction_handler: options[:interaction_handler],
           strip: true,
-          verbosity: Logger::INFO,
+          verbosity: Logger::INFO
         }
         # Needed for sudo check
         expect_any_instance_of(SSHKit::Backend::Abstract).to receive(:execute).once
@@ -698,7 +698,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             cmd,
             into: into,
             strip: strip,
-            ssh_config: ssh_config,
+            ssh_config: ssh_config
           )
         end
 
@@ -715,7 +715,7 @@ RSpec.describe Runbook::Runs::SSHKit do
           capture_options = {
             interaction_handler: options[:interaction_handler],
             strip: false,
-            verbosity: Logger::INFO,
+            verbosity: Logger::INFO
           }
           # Needed for sudo check
           expect_any_instance_of(SSHKit::Backend::Abstract).to receive(:execute).once
@@ -748,7 +748,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             group: "root",
             path: "/home",
             env: {rails_env: :production},
-            umask: "077",
+            umask: "077"
           }
         end
         let (:object) do
@@ -810,7 +810,7 @@ RSpec.describe Runbook::Runs::SSHKit do
         Runbook::Statements::CaptureAll.new(
           cmd,
           into: into,
-          ssh_config: ssh_config,
+          ssh_config: ssh_config
         )
       end
 
@@ -836,7 +836,7 @@ RSpec.describe Runbook::Runs::SSHKit do
         Runbook::Statements::CaptureAll.new(
           cmd,
           into: into,
-          ssh_config: ssh_config,
+          ssh_config: ssh_config
         )
       end
 
@@ -853,7 +853,7 @@ RSpec.describe Runbook::Runs::SSHKit do
         capture_options = {
           interaction_handler: options[:interaction_handler],
           strip: true,
-          verbosity: Logger::INFO,
+          verbosity: Logger::INFO
         }
         # Needed for sudo check
         expect_any_instance_of(SSHKit::Backend::Abstract).to receive(:execute).once
@@ -907,7 +907,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             cmd,
             into: into,
             strip: strip,
-            ssh_config: ssh_config,
+            ssh_config: ssh_config
           )
         end
 
@@ -924,7 +924,7 @@ RSpec.describe Runbook::Runs::SSHKit do
           capture_options = {
             interaction_handler: options[:interaction_handler],
             strip: false,
-            verbosity: Logger::INFO,
+            verbosity: Logger::INFO
           }
           # Needed for sudo check
           expect_any_instance_of(SSHKit::Backend::Abstract).to receive(:execute).once
@@ -957,7 +957,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             group: "root",
             path: "/home",
             env: {rails_env: :production},
-            umask: "077",
+            umask: "077"
           }
         end
         let (:object) do
@@ -1019,7 +1019,7 @@ RSpec.describe Runbook::Runs::SSHKit do
           from,
           to: to,
           options: options,
-          ssh_config: ssh_config,
+          ssh_config: ssh_config
         )
       end
 
@@ -1055,7 +1055,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             group: "root",
             path: "/home",
             env: {rails_env: :production},
-            umask: "077",
+            umask: "077"
           }
         end
         let (:object) do
@@ -1063,7 +1063,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             from,
             to: to,
             ssh_config: ssh_config,
-            options: options,
+            options: options
           )
         end
 
@@ -1118,7 +1118,7 @@ RSpec.describe Runbook::Runs::SSHKit do
           from,
           to: to,
           options: options,
-          ssh_config: ssh_config,
+          ssh_config: ssh_config
         )
       end
 
@@ -1154,7 +1154,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             group: "root",
             path: "/home",
             env: {rails_env: :production},
-            umask: "077",
+            umask: "077"
           }
         end
         let (:object) do
@@ -1162,7 +1162,7 @@ RSpec.describe Runbook::Runs::SSHKit do
             from,
             to: to,
             ssh_config: ssh_config,
-            options: options,
+            options: options
           )
         end
 

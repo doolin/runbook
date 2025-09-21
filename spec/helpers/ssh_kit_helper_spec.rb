@@ -143,7 +143,7 @@ RSpec.describe Runbook::Helpers::SSHKitHelper do
     let(:ssh_config) do
       {
         servers: servers,
-        parallelization: parallelization,
+        parallelization: parallelization
       }.merge(additional_config)
     end
 

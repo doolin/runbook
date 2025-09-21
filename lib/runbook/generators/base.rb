@@ -13,7 +13,7 @@ module Runbook::Generators
         :root,
         group: :base,
         default: ".",
-        desc: "The root directory for your generated code",
+        desc: "The root directory for your generated code"
       )
       base.add_runtime_options!
     end

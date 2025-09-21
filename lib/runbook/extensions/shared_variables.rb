@@ -5,7 +5,7 @@ module Runbook::Extensions
         base.register_hook(
           :set_ivars_hook,
           :before,
-          Runbook::Statement,
+          Runbook::Statement
         ) do |object, metadata|
           target = SharedVariables::RunHooks._target(object)
           metadata[:repo].each do |key, value|

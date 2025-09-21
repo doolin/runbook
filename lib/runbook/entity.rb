@@ -86,7 +86,7 @@ module Runbook
       metadata.merge(
         {
           depth: metadata[:depth] + 1,
-          index: index,
+          index: index
         }
       )
     end
@@ -111,7 +111,7 @@ module Runbook
         {
           depth: metadata[:depth] + 1,
           index: index,
-          position: pos,
+          position: pos
         }
       )
     end

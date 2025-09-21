@@ -5,7 +5,7 @@ module Runbook::Extensions
         Runbook::Entities::Section.new(
           title,
           tags: tags,
-          labels: labels,
+          labels: labels
         ).tap do |section|
           parent.add(section)
           section.dsl.instance_eval(&block)

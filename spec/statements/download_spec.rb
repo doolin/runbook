@@ -7,7 +7,7 @@ RSpec.describe Runbook::Statements::Download do
   let(:ssh_config) {
     {
       servers: ["server1.prod"],
-      path: "/home/bobby_mcgee",
+      path: "/home/bobby_mcgee"
     }
   }
   let(:download) {
@@ -15,7 +15,7 @@ RSpec.describe Runbook::Statements::Download do
       from,
       to: to,
       ssh_config: ssh_config,
-      options: options,
+      options: options
     )
   }
 

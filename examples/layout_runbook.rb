@@ -8,7 +8,7 @@ This is a runbook for playing with the layout statement
 
   layout [[
     [:runbook, :deploy],
-    [:monitor_1, :monitor_2, :monitor_3],
+    [:monitor_1, :monitor_2, :monitor_3]
   ]]
 
   section "Layout Testing" do

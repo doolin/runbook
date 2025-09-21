@@ -10,7 +10,7 @@ RSpec.describe Runbook::Statements::Ask do
       prompt,
       into: into,
       default: default,
-      echo: echo,
+      echo: echo
     )
   }
 

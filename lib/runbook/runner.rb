@@ -23,7 +23,7 @@ module Runbook
         start_at: Util::Glue.new(start_at || "0"),
         toolbox: Util::Glue.new(toolbox),
         keep_panes: keep_panes,
-        book_title: book.title,
+        book_title: book.title
       }).
       merge(Runbook::Entities::Book.initial_run_metadata).
       merge(additional_metadata)
@@ -47,7 +47,7 @@ module Runbook
         layout_panes: {},
         repo: {},
         reverse: Util::Glue.new(false),
-        reversed: Util::Glue.new(false),
+        reversed: Util::Glue.new(false)
       }
     end
 

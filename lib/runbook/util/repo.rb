@@ -6,11 +6,11 @@ module Runbook::Util
     def self.load(metadata)
       title = metadata[:book_title]
       file = _file(title)
-      if File.exist?(file)
-        msg = "Repo file #{file} detected. Loading previous state..."
-        metadata[:toolbox].output(msg)
-        metadata[:repo] = ::YAML::load_file(file)
-      end
+      return unless File.exist?(file)
+
+      msg = "Repo file #{file} detected. Loading previous state..."
+      metadata[:toolbox].output(msg)
+      metadata[:repo] = ::YAML::load_file(file)
     end
 
     def self.save(repo, book_title:)

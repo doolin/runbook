@@ -121,13 +121,12 @@ module Runbook::Generators
       end
 
       # Add gemfile gems
-      if @gemfile_file_contents
-        gems = @gemfile_file_contents.select do |line|
-          line =~ /^gem /
-        end.join
+      return unless @gemfile_file_contents
+      gems = @gemfile_file_contents.select do |line|
+        line =~ /^gem /
+      end.join
 
-        append_to_file(target, "\n#{gems}", verbose: false)
-      end
+      append_to_file(target, "\n#{gems}", verbose: false)
 
     end
 

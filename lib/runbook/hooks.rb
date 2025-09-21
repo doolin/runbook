@@ -52,9 +52,9 @@ module Runbook
           _execute_around_hooks(executor, object, *args, &block)
         end
 
-        unless skip_after
-          _execute_after_hooks(executor, object, *args)
-        end
+        return if skip_after
+
+        _execute_after_hooks(executor, object, *args)
       end
 
       def _execute_before_hooks(executor, object, *args)

@@ -59,15 +59,15 @@ module Runbook::Runs
           end
         end
 
-        if should_abort
-          error_msg = "Error! Assertion `#{object.cmd}` failed"
-          metadata[:toolbox].error(error_msg)
-          if object.abort_statement
-            object.abort_statement.parent = object.parent
-            object.abort_statement.run(self, metadata.dup)
-          end
-          raise Runbook::Runner::ExecutionError, error_msg
+        return unless should_abort
+
+        error_msg = "Error! Assertion `#{object.cmd}` failed"
+        metadata[:toolbox].error(error_msg)
+        if object.abort_statement
+          object.abort_statement.parent = object.parent
+          object.abort_statement.run(self, metadata.dup)
         end
+        raise Runbook::Runner::ExecutionError, error_msg
       end
 
       def runbook__statements__capture(object, metadata)

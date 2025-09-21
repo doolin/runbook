@@ -63,11 +63,8 @@ module Runbook
             item.run(run, new_metadata)
           end
 
-          if _should_retraverse?(run, metadata)
-            metadata[:reverse] = false
-          else
-            break
-          end
+          break unless _should_retraverse?(run, metadata)
+          metadata[:reverse] = false
         end
       end
       self.visited!

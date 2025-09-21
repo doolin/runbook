@@ -655,19 +655,6 @@ Style/GlobalStdStream:
   Exclude:
     - 'spec/runbook_spec.rb'
 
-# Offense count: 8
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
-Style/GuardClause:
-  Exclude:
-    - 'lib/runbook/configuration.rb'
-    - 'lib/runbook/entity.rb'
-    - 'lib/runbook/generators/project/project.rb'
-    - 'lib/runbook/hooks.rb'
-    - 'lib/runbook/runs/ssh_kit.rb'
-    - 'lib/runbook/util/repo.rb'
-    - 'lib/runbook/util/stored_pose.rb'
-    - 'lib/runbook/views/markdown.rb'
 
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).

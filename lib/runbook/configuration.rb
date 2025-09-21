@@ -83,9 +83,8 @@ module Runbook
     end
 
     def self._load_cli_config
-      if cli_config_file && File.exist?(cli_config_file)
-        load(cli_config_file)
-      end
+      return unless cli_config_file && File.exist?(cli_config_file)
+      load(cli_config_file)
     end
 
     def initialize

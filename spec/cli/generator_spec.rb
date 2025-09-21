@@ -398,8 +398,8 @@ RSpec.describe "runbook generate", type: :aruba do
           last_cmd = last_command_started
           bundler_version = Gem::Version.new(Bundler::VERSION)
           changelog = "--no-changelog" if bundler_version >= Gem::Version.new("2.2.8")
-          bundle_gem_output = %Q{run  bundle gem #{name} --test #{test} --ci #{ci} --rubocop #{changelog} --no-coc --no-mit from "."}
-          gem_successfully_created = %Q{Gem 'my_runbooks' was successfully created.}
+          bundle_gem_output = %Q(run  bundle gem #{name} --test #{test} --ci #{ci} --rubocop #{changelog} --no-coc --no-mit from ".")
+          gem_successfully_created = %Q(Gem 'my_runbooks' was successfully created.)
           project_generation_output = [
             "remove  my_runbooks/my_runbooks.gemspec",
             "remove  my_runbooks/README.md",
@@ -456,8 +456,8 @@ RSpec.describe "runbook generate", type: :aruba do
           last_cmd = last_command_started
           bundler_version = Gem::Version.new(Bundler::VERSION)
           changelog = "--no-changelog" if bundler_version >= Gem::Version.new("2.2.8")
-          bundle_gem_output = %Q{run  bundle gem #{name} --test #{test} --ci #{ci} --rubocop #{changelog} --no-coc --no-mit from "."}
-          gem_successfully_created = %Q{Gem 'my_runbooks' was successfully created.}
+          bundle_gem_output = %Q(run  bundle gem #{name} --test #{test} --ci #{ci} --rubocop #{changelog} --no-coc --no-mit from ".")
+          gem_successfully_created = %Q(Gem 'my_runbooks' was successfully created.)
           project_generation_output = [
             "remove  my_runbooks/my_runbooks.gemspec",
             "remove  my_runbooks/README.md",
@@ -510,8 +510,8 @@ RSpec.describe "runbook generate", type: :aruba do
           last_cmd = last_command_started
           bundler_version = Gem::Version.new(Bundler::VERSION)
           changelog = "--no-changelog" if bundler_version >= Gem::Version.new("2.2.8")
-          bundle_gem_output = %Q{run  bundle gem #{name} --test #{test} --ci #{ci} --rubocop #{changelog} --no-coc --no-mit from "."}
-          invalid_gem_name = %Q{Invalid gem name 7l Please give a name which does not start with numbers.}
+          bundle_gem_output = %Q(run  bundle gem #{name} --test #{test} --ci #{ci} --rubocop #{changelog} --no-coc --no-mit from ".")
+          invalid_gem_name = %Q(Invalid gem name 7l Please give a name which does not start with numbers.)
           project_generation_output = [
             "remove  my_runbooks/my_runbooks.gemspec",
             "remove  my_runbooks/README.md",

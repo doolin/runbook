@@ -41,7 +41,7 @@ RSpec.describe "runbook", type: :aruba do
     let(:command) { "runbook unknown" }
 
     it "prints out unknown command message" do
-      expect(last_command_started).to have_output(%q{Could not find command "unknown".})
+      expect(last_command_started).to have_output(%q(Could not find command "unknown".))
     end
 
     it "reports an error status code" do

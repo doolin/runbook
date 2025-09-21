@@ -10,7 +10,7 @@ it starts successfully
     step "Stop Nginx" do
       note "Stopping Nginx..."
       command "service nginx stop"
-      assert %q{service nginx status | grep "not running"}
+      assert %q(service nginx status | grep "not running")
     end
 
     step { wait 5 }
@@ -18,7 +18,7 @@ it starts successfully
     step "Start Nginx" do
       note "Starting Nginx..."
       command "service nginx start"
-      assert %q{service nginx status | grep "is running"}
+      assert %q(service nginx status | grep "is running")
       confirm "Nginx is taking traffic?"
       notice "Make sure to report why you restarted nginx"
     end

@@ -67,7 +67,7 @@ module Runbook
           metadata[:reverse] = false
         end
       end
-      self.visited!
+      visited!
     end
 
     def dynamic!

@@ -90,7 +90,7 @@ module Runbook::Runs
           result = {}
           mutex = Mutex.new
           with_ssh_config(ssh_config) do
-            hostname = self.host.hostname
+            hostname = host.hostname
             capture_result = capture(*capture_args, capture_options)
             mutex.synchronize { result[hostname] = capture_result }
           end

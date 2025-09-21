@@ -20,7 +20,7 @@ module Runbook::Generators
 
     module ClassMethods
       def command
-        self.to_s.gsub("Runbook::Generators::", "").underscore
+        to_s.gsub("Runbook::Generators::", "").underscore
       end
 
       def usage

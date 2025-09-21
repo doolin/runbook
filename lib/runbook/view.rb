@@ -12,7 +12,7 @@ module Runbook
         if respond_to?(method)
           send(method, object, output, metadata)
         else
-          $stderr.puts("WARNING! No render rule for #{object.class} (#{_method_name(object)}) in #{self.to_s}")
+          $stderr.puts("WARNING! No render rule for #{object.class} (#{_method_name(object)}) in #{to_s}")
         end
       end
 

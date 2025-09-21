@@ -14,7 +14,7 @@ module Runbook
       invoke_with_hooks(run, self, metadata) do
         run.execute(self, metadata)
       end
-      self.visited!
+      visited!
     end
   end
 end

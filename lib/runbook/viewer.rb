@@ -10,9 +10,9 @@ module Runbook
 
     def generate(view: :markdown)
       view = "Runbook::Views::#{view.to_s.camelize}".constantize
-      metadata = Util::StickyHash.new.
-      merge(Runbook::Entities::Book.initial_render_metadata).
-      merge(additional_metadata)
+      metadata = Util::StickyHash.new
+      .merge(Runbook::Entities::Book.initial_render_metadata)
+      .merge(additional_metadata)
 
       StringIO.new.tap do |output|
         book.render(view, output, metadata)

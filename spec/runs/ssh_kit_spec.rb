@@ -201,9 +201,9 @@ RSpec.describe Runbook::Runs::SSHKit do
           it "calls the timeout_cmd with timeout_cmd_ssh_config" do
             timeout_cmd_args = [:echo, "'timed out!'"]
             expect(toolbox).to receive(:error)
-            expect(subject).to receive(:with_ssh_config).
-              with(abort_cmd_ssh_config).
-              and_call_original
+            expect(subject).to receive(:with_ssh_config)
+              .with(abort_cmd_ssh_config)
+              .and_call_original
             expect_any_instance_of(
               SSHKit::Backend::Abstract
             ).to receive(:execute).with(*timeout_cmd_args, {})

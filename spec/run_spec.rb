@@ -538,9 +538,9 @@ RSpec.describe "Runbook::Run" do
     end
 
     it "sets up the layout" do
-      expect(subject).to receive(:setup_layout).
-        with(layout, runbook_title: title).
-        and_return(layout_panes)
+      expect(subject).to receive(:setup_layout)
+        .with(layout, runbook_title: title)
+        .and_return(layout_panes)
       subject.execute(object, metadata)
     end
 

@@ -483,9 +483,9 @@ Note: Run me last
         before(:each) do
           expect(
             Runbook::Runs::SSHKit
-          ).to receive(:setup_layout).
-          with(my_layout, runbook_title: title).
-          and_return(layout_panes)
+          ).to receive(:setup_layout)
+          .with(my_layout, runbook_title: title)
+          .and_return(layout_panes)
         end
 
         context "with keep_panes: true" do

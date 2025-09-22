@@ -35,17 +35,6 @@ Layout/ClosingParenthesisIndentation:
   Exclude:
     - 'spec/views/markdown_spec.rb'
 
-# Offense count: 10
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: leading, trailing
-Layout/DotPosition:
-  Exclude:
-    - 'lib/runbook/runner.rb'
-    - 'lib/runbook/viewer.rb'
-    - 'spec/run_spec.rb'
-    - 'spec/runner_spec.rb'
-    - 'spec/runs/ssh_kit_spec.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).

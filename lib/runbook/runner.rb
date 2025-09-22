@@ -24,9 +24,9 @@ module Runbook
         toolbox: Util::Glue.new(toolbox),
         keep_panes: keep_panes,
         book_title: book.title
-      }).
-      merge(Runbook::Entities::Book.initial_run_metadata).
-      merge(additional_metadata)
+      })
+      .merge(Runbook::Entities::Book.initial_run_metadata)
+      .merge(additional_metadata)
 
       stored_pose = _stored_position(metadata)
       if metadata[:start_at] == "0" && stored_pose && _resume_previous_pose?(metadata, stored_pose)

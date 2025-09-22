@@ -35,14 +35,6 @@ Layout/ClosingParenthesisIndentation:
   Exclude:
     - 'spec/views/markdown_spec.rb'
 
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Layout/ElseAlignment:
-  Exclude:
-    - 'spec/runner_spec.rb'
-
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLinesAroundMethodBody:
@@ -56,17 +48,6 @@ Layout/EmptyLinesAroundMethodBody:
 Layout/EndAlignment:
   Exclude:
     - 'spec/runner_spec.rb'
-
-# Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
-Layout/ExtraSpacing:
-  Exclude:
-    - 'lib/runbook/helpers/ssh_kit_helper.rb'
-    - 'lib/runbook/run.rb'
-    - 'lib/runbook/views/markdown.rb'
-    - 'runbook.gemspec'
-    - 'spec/node_spec.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -82,35 +63,6 @@ Layout/FirstArgumentIndentation:
 # SupportedStyles: special_inside_parentheses, consistent, align_braces
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
-
-# Offense count: 5
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowMultipleStyles, EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
-# SupportedHashRocketStyles: key, separator, table
-# SupportedColonStyles: key, separator, table
-# SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
-Layout/HashAlignment:
-  Exclude:
-    - 'lib/runbook/cli.rb'
-    - 'lib/runbook/generators/project/project.rb'
-
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: normal, indented_internal_methods
-Layout/IndentationConsistency:
-  Exclude:
-    - 'examples/simple_runbook.rb'
-    - 'examples/suppress_capture_output.rb'
-
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: IndentationWidth, EnforcedStyle.
-# SupportedStyles: spaces, tabs
-Layout/IndentationStyle:
-  Exclude:
-    - 'examples/simple_runbook.rb'
-    - 'examples/suppress_capture_output.rb'
 
 # Offense count: 5
 # This cop supports safe autocorrection (--autocorrect).

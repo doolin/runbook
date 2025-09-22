@@ -19,7 +19,7 @@ Runbook::Runs::SSHKit.register_hook(
     Runbook.config.ssh_kit.output = Runbook.config.ssh_kit.use_format(:blackhole)
     metadata[:toolbox] = QuietToolbox.new
   end
-	block.call(object, metadata)
+  block.call(object, metadata)
   Runbook.config.ssh_kit.output = formatter
   metadata[:toolbox] = toolbox
 end

@@ -81,7 +81,7 @@ module Runbook::Helpers
     def with_ssh_config(ssh_config, &exec_block)
       user = ssh_config[:user]
       group = ssh_config[:group]
-      as_block =  _as_block(user, group, &exec_block)
+      as_block = _as_block(user, group, &exec_block)
       within_block = _within_block(ssh_config[:path], &as_block)
       with_block = _with_block(ssh_config[:env], &within_block)
 

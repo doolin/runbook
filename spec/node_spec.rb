@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe Runbook::Node do
-  subject { Class.new(Runbook::Node) { def initialize(); end  }.new }
+  subject { Class.new(Runbook::Node) { def initialize(); end }.new }
 
   describe "initialize" do
     it "cannot be initialized" do
@@ -45,7 +45,7 @@ RSpec.describe Runbook::Node do
 
     context "when node is statement" do
       context "when node's parent is nil" do
-        subject { Class.new(Runbook::Statement) { def initialize(); end  }.new }
+        subject { Class.new(Runbook::Statement) { def initialize(); end }.new }
 
         it "returns nil" do
           expect(subject.parent_entity).to eq(nil)

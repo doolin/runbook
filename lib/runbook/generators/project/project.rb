@@ -19,11 +19,11 @@ module Runbook::Generators
     argument :name, desc: "The name of your project, e.x. acme_runbooks"
 
     class_option :"shared-lib-dir", type: :string,
-      desc: "Target directory for shared runbook code"
+                                    desc: "Target directory for shared runbook code"
     class_option :test, type: :string, enum: ["rspec", "minitest"],
-      default: "rspec", desc: 'Test-suite, "rspec" or "minitest"'
+                        default: "rspec", desc: 'Test-suite, "rspec" or "minitest"'
     class_option :ci, type: :string, enum: ["github", "travis", "gitlab", "circle"],
-      default: "github", desc: 'CI Service, "github", "travis", "gitlab", or "circle"'
+                      default: "github", desc: 'CI Service, "github", "travis", "gitlab", or "circle"'
 
     def init_gem
       bundle_exists = "which bundle 2>&1 1>/dev/null"

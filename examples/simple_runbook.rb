@@ -11,8 +11,8 @@ This is a simple runbook that does stuff
       step "Step 1" do
         parallelization({ strategy: :sequence })
         servers "pblesi@server01.stg", "pblesi@server02.stg"
-				user "root"
-				path "/home/pblesi"
+        user "root"
+        path "/home/pblesi"
         env rails_env: "development"
         umask "077"
 

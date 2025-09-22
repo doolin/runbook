@@ -75,8 +75,8 @@ module Runbook
     long_desc "Set up Runbook directory structure and Runbookfile in an existing project for executing runbooks."
     Runbook::Initializer.class_options.values.each do |co|
       method_option co.name, desc: co.description, required: co.required,
-        default: co.default, aliases: co.aliases, type: co.type,
-        banner: co.banner, hide: co.hide
+                             default: co.default, aliases: co.aliases, type: co.type,
+                             banner: co.banner, hide: co.hide
     end
     def init
       invoke(Runbook::Initializer)

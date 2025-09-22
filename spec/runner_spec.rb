@@ -1190,7 +1190,7 @@ OUTPUT
         ) do |object, metadata|
           labels_str = if object.labels.empty?
             "{}"
-          else
+                       else
             labels = object.labels.map { |k,v| "#{k}: :#{v}" }.join(", ")
             "{#{labels}}"
           end

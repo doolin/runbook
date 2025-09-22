@@ -92,6 +92,7 @@ module Runbook::Helpers
 
     def _setup_panes(layout_panes, panes_to_init, current_pane, structure, depth=0)
       return if structure.empty?
+
       case structure
       when Array
         case structure.size

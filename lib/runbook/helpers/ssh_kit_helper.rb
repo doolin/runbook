@@ -2,6 +2,7 @@ module Runbook::Helpers
   module SSHKitHelper
     def ssh_kit_command(cmd, raw: false)
       return [cmd] if raw
+
       cmd, args = cmd.split(" ", 2)
       [cmd.to_sym, args]
     end
@@ -19,11 +20,13 @@ module Runbook::Helpers
       nil_or_blank = ->(config) { config.nil? || config == blank_config }
       ssh_config = object.send(ssh_config_method)
       return ssh_config unless nil_or_blank.call(ssh_config)
+
       object = object.parent
 
       while object
         ssh_config = object.ssh_config
         return ssh_config unless nil_or_blank.call(ssh_config)
+
         object = object.parent
       end
 
@@ -95,6 +98,7 @@ module Runbook::Helpers
     def _servers(ssh_config_servers)
       return :local if ssh_config_servers.empty?
       return :local if ssh_config_servers == [:local]
+
       ssh_config_servers
     end
 

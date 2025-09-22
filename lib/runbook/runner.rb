@@ -55,6 +55,7 @@ module Runbook
 
     def _resume_previous_pose?(metadata, pose)
       return false if metadata[:auto] || metadata[:noop]
+
       pose_msg = "Previous position detected: #{pose}"
       metadata[:toolbox].output(pose_msg)
       resume_msg = "Do you want to resume at this position?"

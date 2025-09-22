@@ -46,6 +46,7 @@ module Runbook
 
     def self.load_config
       return if @loaded
+
       @loaded = true
       _load_global_config
       _load_project_config
@@ -73,6 +74,7 @@ module Runbook
           return
         end
         break if File.identical?(dir, "/")
+
         dir = File.join(dir, "..")
       end
     end
@@ -84,6 +86,7 @@ module Runbook
 
     def self._load_cli_config
       return unless cli_config_file && File.exist?(cli_config_file)
+
       load(cli_config_file)
     end
 

@@ -46,6 +46,7 @@ module Runbook
         toolbox.output("Step #{metadata[:position]}:#{title}\n\n")
         return if metadata[:auto] || metadata[:noop] ||
           !metadata[:paranoid] || object.title.nil?
+
         step_choices = _step_choices(object, metadata)
         continue_result = toolbox.expand("Continue?", step_choices)
         _handle_continue_result(continue_result, object, metadata)
@@ -195,6 +196,7 @@ module Runbook
           current_pose = metadata[:position]
         end
         return false if current_pose.empty?
+
         position = Gem::Version.new(current_pose)
         start_at = Gem::Version.new(metadata[:start_at])
         position < start_at
@@ -203,6 +205,7 @@ module Runbook
       def start_at_is_substep?(object, metadata)
         return false unless object.is_a?(Entity)
         return true if metadata[:position].empty?
+
         metadata[:start_at].start_with?(metadata[:position])
       end
 
@@ -259,6 +262,7 @@ module Runbook
         Runbook::Entities::Book
       ) do |object, metadata|
         next if metadata[:noop] || metadata[:layout_panes].none? || metadata[:keep_panes]
+
         if metadata[:auto]
           metadata[:toolbox].output("Killing all opened tmux panes...")
           kill_all_panes(metadata[:layout_panes])

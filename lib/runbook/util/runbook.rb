@@ -21,6 +21,7 @@ module Runbook
 
   def self.deprecator
     return @deprecator if @deprecator
+
     major_version = Gem::Version.new(Runbook::VERSION).segments[0]
     next_major_version = major_version + 1
     @deprecator = ActiveSupport::Deprecation.new(

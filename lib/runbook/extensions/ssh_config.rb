@@ -15,6 +15,7 @@ module Runbook::Extensions
       def ssh_config(&block)
         config = Class.new do
           attr_reader :dsl
+
           prepend Runbook::Extensions::SSHConfig
         end.new
         dsl_class = Runbook::DSL.class(

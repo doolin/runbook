@@ -489,7 +489,6 @@ Note: Run me last
         end
 
         context "with keep_panes: true" do
-
           it "does not kill all panes" do
             expect(
               Runbook::Runs::SSHKit

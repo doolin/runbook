@@ -32,6 +32,7 @@ module Runbook::CLIBase
     unless File.exist?(config)
       raise Thor::InvocationError, "#{cmd}: cannot access #{config}: No such file or directory"
     end
+
     Runbook::Configuration.cli_config_file = config
     Runbook::Configuration.reconfigure
   end

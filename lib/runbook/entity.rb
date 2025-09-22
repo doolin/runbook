@@ -55,15 +55,18 @@ module Runbook
       invoke_with_hooks(run, self, metadata) do
         run.execute(self, metadata)
         next if _should_reverse?(run, metadata)
+
         loop do
           items.each_with_index do |item, index|
             new_metadata = _run_metadata(items, item, metadata, index)
             # Optimization
             break if _should_reverse?(run, new_metadata)
+
             item.run(run, new_metadata)
           end
 
           break unless _should_retraverse?(run, metadata)
+
           metadata[:reverse] = false
         end
       end
@@ -115,11 +118,13 @@ module Runbook
 
     def _should_reverse?(run, metadata)
       return false unless metadata[:reverse]
+
       run.past_position?(metadata[:position], metadata[:start_at])
     end
 
     def _should_retraverse?(run, metadata)
       return false unless metadata[:reverse]
+
       run.start_at_is_substep?(self, metadata)
     end
   end

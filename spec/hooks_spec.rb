@@ -151,7 +151,6 @@ RSpec.describe Runbook::Hooks do
           result << "around before hook_4"
           block.call(object, metadata)
           result << "around after hook_4"
-
         end
       }
     end

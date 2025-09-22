@@ -28,6 +28,7 @@ module Runbook::Generators
     def init_gem
       bundle_exists = "which bundle 2>&1 1>/dev/null"
       raise "Please ensure bundle is installed" unless system(bundle_exists)
+
       bundler_version = Gem::Version.new(Bundler::VERSION)
 
       inside(parent_options[:root]) do
@@ -120,6 +121,7 @@ module Runbook::Generators
 
       # Add gemfile gems
       return unless @gemfile_file_contents
+
       gems = @gemfile_file_contents.select do |line|
         line =~ /^gem /
       end.join

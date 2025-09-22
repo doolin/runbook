@@ -57,5 +57,4 @@ RSpec.describe "runbook", type: :aruba do
       expect(last_command_started).to have_output(/Runbook v#{version}/)
     end
   end
-
 end

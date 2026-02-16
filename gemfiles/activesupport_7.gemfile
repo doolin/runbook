@@ -5,6 +5,6 @@ source "https://rubygems.org"
 gem "base64"
 gem "mutex_m"
 gem "rubocop"
-gem "activesupport", "~> 6.0"
+gem "activesupport", "~> 7.0"
 
 gemspec path: "../"

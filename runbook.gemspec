@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'Runbook provides a DSL for specifying system operations. This DSL is used to generate formatted runbooks as well as interactive runbooks to be executed on the command line.'
   spec.homepage      = "https://github.com/braintree/runbook/"
   spec.license       = "MIT"
-  spec.required_ruby_version = '>= 2.2.3'
+  spec.required_ruby_version = '>= 4.0.1'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.

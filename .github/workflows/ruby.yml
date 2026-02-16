@@ -8,31 +8,19 @@ on:
 
 jobs:
   test:
-
-    runs-on: ubuntu-20.04
-
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
-        exclude:
-          - ruby-version: 2.3.8
-            gemfile: gemfiles/activesupport_6.gemfile
-          - ruby-version: 2.4.10
-            gemfile: gemfiles/activesupport_6.gemfile
         gemfile:
-          - gemfiles/activesupport_5.gemfile
           - gemfiles/activesupport_6.gemfile
-        ruby-version:
-          - 2.3.8
-          - 2.4.10
-          - 2.5
-          - 2.6
-          - 2.7
-          - '3.0'  # Due to https://github.com/actions/runner/issues/849, we have to use quotes for '3.0'
+          - gemfiles/activesupport_7.gemfile
+          - gemfiles/activesupport_8.gemfile
+        ruby-version: ['4.0.1']
     env:
       BUNDLE_GEMFILE: ${{ matrix.gemfile }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Ruby ${{ matrix.ruby-version }}
         uses: ruby/setup-ruby@v1
         with:

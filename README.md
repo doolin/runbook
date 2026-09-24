@@ -173,6 +173,7 @@ Initialize Runbook in your project:
 * [8. Known Issues](#known-issues)
 * [9. FAQ](#faq)
 * [10. Development](#development)
+  * [10.1 Dependencies Held Back](#dependencies-held-back)
 * [11. Contributing](#contributing)
 * [12. Feature Requests](#feature-requests)
 * [13. License](#license)
@@ -1254,6 +1255,34 @@ To release a new version:
 3. Commit changes with commit messsage: "Bump runbook version to X.Y.Z"
 4. Run `gem signin` to ensure you can push the new version to rubygems.org
 5. Run `bundle exec rake release`, which will create a git tag for the version and push git commits and tags.
+
+### Dependencies Held Back
+
+As of 2026-09-24 every gem in `Gemfile.lock` is at its newest release except the ones below. None is held by a constraint in this repository's Gemfile or gemspec; each is held by the constraint of a gem that is itself at its newest release. None carries a known security advisory. They are left as they are for now, deliberately.
+
+**Held by maintained gems that pin their own family.** These move when the gem holding them releases; nothing to do here.
+
+| Gem | Locked | Newest | Held by |
+|---|---|---|---|
+| cucumber-core, cucumber-gherkin, cucumber-messages, and four other `cucumber-*` gems | | | cucumber 11.1.1 (for example `cucumber-core >= 16.2.0, < 17`) |
+| diff-lcs | 1.6.2 | 2.0.0 | rspec 3.13 (`< 2.0`) and cucumber (`~> 1.5`) |
+| multi_test | 1.1.0 | 2.0.0 | cucumber (`~> 1.1`) |
+
+**Held by tty gems that have stopped releasing.** runbook depends on both directly (`tty-progressbar ~> 0.18` and `tty-prompt ~> 0.23` in the gemspec) and uses them in `lib/runbook/run.rb` and `lib/runbook/toolbox.rb`.
+
+| Gem | Locked | Newest | Held by |
+|---|---|---|---|
+| wisper | 2.0.1 | 3.0.0 | tty-reader 0.9.0 (`wisper ~> 2.0`); upstream last pushed 2023-11, default branch unchanged |
+| unicode-display_width | 2.6.0 | 3.3.0 | tty-progressbar 0.18.3 (`< 3.0`); upstream last pushed 2025-03, default branch unchanged |
+
+The ways forward, cheapest first:
+
+1. Accept and watch. `bundle outdated` keeps reporting them, so they are not forgotten.
+2. Open pull requests upstream loosening the two constraints. Nothing moves until a release, and the maintainer may not be active.
+3. Point the Gemfile at a fork with the constraint loosened. The gems move now, and the fork becomes something to maintain.
+4. Replace the tty gems with maintained alternatives. This is a code change to `run.rb` and `toolbox.rb`.
+
+A security advisory against wisper or unicode-display_width would make 3 or 4 worth the cost; until then, 1.
 
 ## Contributing
 

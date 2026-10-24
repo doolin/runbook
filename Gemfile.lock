@@ -213,7 +213,6 @@ DEPENDENCIES
   aruba (~> 2.3)
   base64
   bcrypt_pbkdf (>= 1.0, < 2.0)
-  bundler (~> 2.2)
   bundler-audit
   debug (~> 1.10)
   ed25519 (>= 1.2, < 2.0)
@@ -225,4 +224,4 @@ DEPENDENCIES
   simplecov
 
 BUNDLED WITH
-   2.7.2
+  4.0.20
